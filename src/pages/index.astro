@@ -26,7 +26,7 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
       <div class="absolute inset-0" style="background:linear-gradient(178deg, rgb(22 15 12 / 0.46) 0%, rgb(22 15 12 / 0.18) 34%, rgb(22 15 12 / 0.40) 64%, rgb(22 15 12 / 0.82) 100%)"></div>
     </div>
 
-    <div class="container-x w-full pb-16 pt-32 sm:pb-20 lg:pb-24">
+    <div class="container-x relative w-full pb-16 pt-32 sm:pb-20 lg:pb-24">
       <div class="max-w-2xl">
         <LiveStatus variant="dark" class="mb-6" />
         <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
@@ -49,8 +49,20 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
           </a>
         </div>
 
-        <!-- Kleines Glas-Bewertungs-Element im Hero -->
-        <div class="mt-8 hidden max-w-md rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl sm:block">
+      </div>
+
+      <!-- Gestapelte Glas-Bewertungen rechts im Hero (ab xl): die vorderste klar,
+           dahinter zunehmend durchsichtiger und versetzt - fügt sich ins Headerbild ein. -->
+      <div class="absolute right-0 top-1/2 z-10 hidden w-[19.5rem] -translate-y-1/2 xl:block">
+        <figure class="absolute inset-x-0 top-0 -translate-y-[4.75rem] translate-x-8 rotate-[5deg] rounded-3xl border border-white/10 bg-white/[0.05] p-5 opacity-50 shadow-lift backdrop-blur-md">
+          <blockquote class="text-sm leading-snug text-white/85">„Heute geht es mir sehr gut - wir haben neue Energie gewonnen."</blockquote>
+          <figcaption class="mt-1.5 text-xs text-white/55">H. Maybaum</figcaption>
+        </figure>
+        <figure class="absolute inset-x-0 top-0 -translate-y-9 translate-x-4 rotate-[2.5deg] rounded-3xl border border-white/15 bg-white/[0.08] p-5 opacity-80 shadow-lift backdrop-blur-lg">
+          <blockquote class="text-sm leading-snug text-white/90">„Ich kann wieder aufrecht durchs Leben gehen, ohne Schmerzen."</blockquote>
+          <figcaption class="mt-1.5 text-xs text-white/60">U. Kohlscheen · Oldenburg</figcaption>
+        </figure>
+        <figure class="relative rounded-3xl border border-white/25 bg-white/[0.14] p-6 shadow-lift backdrop-blur-xl">
           <div class="flex items-center gap-2.5">
             <span class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-white">
               <Social name="google" class="h-4 w-4" />
@@ -61,13 +73,11 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
                 <Icon name="Star" size={13} class="text-amber fill-amber" strokeWidth={1.5} />
               ))}
             </span>
-            <span class="text-xs text-white/70">bei Google</span>
+            <span class="text-xs text-white/70">Google</span>
           </div>
-          <div class="mt-2.5 space-y-1 text-sm text-white/85">
-            <p>„Ich fühle mich wie neu geboren." <span class="text-white/55">- Corinna B.</span></p>
-            <p>„Wieder aufrecht, ohne Schmerzen." <span class="text-white/55">- U. Kohlscheen</span></p>
-          </div>
-        </div>
+          <blockquote class="mt-3 text-[0.95rem] leading-relaxed text-white/90">„Ich fühle mich wie neu geboren und habe meine Lebensqualität zurückgewonnen."</blockquote>
+          <figcaption class="mt-2 text-xs text-white/60">Corinna B. · Berlin</figcaption>
+        </figure>
       </div>
     </div>
   </section>
