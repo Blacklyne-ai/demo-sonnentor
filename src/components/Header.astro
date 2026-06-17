@@ -20,10 +20,10 @@ const { floating = false, current = '' } = Astro.props;
       </span>
     </a>
 
-    <nav class="hidden lg:flex items-center gap-0.5" aria-label="Hauptnavigation">
+    <nav class="nav-pill hidden lg:flex items-center gap-0.5 rounded-full px-1.5 py-1" aria-label="Hauptnavigation">
       {primaryNav.map((item) => (
         <a href={item.href}
-          class:list={['nav-link rounded-full px-2.5 py-2 text-[0.92rem] font-medium transition-colors',
+          class:list={['nav-link rounded-full px-2.5 py-1.5 text-[0.92rem] font-medium transition-colors',
             current === item.href && 'is-current']}>
           {item.label}
         </a>
@@ -78,6 +78,20 @@ const { floating = false, current = '' } = Astro.props;
     border-bottom: 1px solid rgb(var(--rgb-border) / 0.9);
   }
   .site-header.is-solid { box-shadow: 0 6px 28px -22px rgb(36 28 24 / 0.5); }
+
+  /* Menü als Pille - adaptiv für hell (solid) und floating (über dunklem Hero) */
+  .nav-pill { border: 1px solid transparent; transition: background-color .3s, border-color .3s; }
+  .site-header:not([data-floating]) .nav-pill,
+  .site-header.is-solid .nav-pill {
+    background: rgb(var(--rgb-ink) / 0.04);
+    border-color: rgb(var(--rgb-border));
+  }
+  .site-header[data-floating]:not(.is-solid) .nav-pill {
+    background: rgb(255 255 255 / 0.12);
+    border-color: rgb(255 255 255 / 0.22);
+    backdrop-filter: saturate(1.2) blur(10px);
+    -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  }
 
   .site-header:not([data-floating]) .nav-link,
   .site-header:not([data-floating]) .nav-phone,
