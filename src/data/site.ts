@@ -42,6 +42,13 @@ export const site = {
   // Kein eigener YouTube-Kanal: die 2 eingebundenen Videos sind Features des Kanals
   // „Welt im Wandel.TV" (neutral betitelt, cookie-sicher eingebettet).
 
+  // Echtes Google-Profil (Stand: 5,0 von 5). Direkte Place-ID/Bewertungs-Deeplink:
+  // Operator-TODO #11 - der Such-Link landet zuverlässig auf dem Profil.
+  google: {
+    rating: '5,0',
+    url: 'https://www.google.com/maps/search/?api=1&query=Gesundheitspraxis+SonnenTor+Bahnhofsweg+6B+16775+Neuglobsow',
+  },
+
   impressum: {
     responsible: 'Dr. Fabian Siegfried Forbrig',
     taxNumber: '25/035/05526',
@@ -76,6 +83,15 @@ export const disclaimer = {
   testimonial:
     'Erfahrungsberichte schildern persönliche Eindrücke einzelner Menschen. Sie sind kein Versprechen für einen Behandlungserfolg.',
 } as const;
+
+// Eingebundene Videos (cookie-sicher, neutral betitelt). 1-2: Features von
+// „Welt im Wandel.TV"; 3: Podcast von „Gesundheit für Empathen". Original-Titel
+// nennen „Wunder der Heilung / Krebs" - bewusst NICHT als Überschrift übernommen.
+export const videos = [
+  { id: 'spznxzhWLjU', title: 'Einblicke in meine Arbeit', kind: 'Video' },
+  { id: '0DyJ6HPcJuI', title: 'Erfahrungen & Geschichten', kind: 'Video' },
+  { id: 'tqcq9mVs5sg', title: 'Podcast: Im Gespräch mit Fabian Forbrig', kind: 'Podcast' },
+] as const;
 
 // Schlanke Hauptnavigation (Patienten + Karriere klar getrennt).
 export const primaryNav = [

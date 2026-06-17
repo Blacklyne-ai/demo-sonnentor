@@ -70,10 +70,19 @@ erfunden; wo Substanz fehlte, steht hier ein TODO statt einer Erfindung.
     Überschrift übernommen. Den toten „YouTube-Kanal"-Link im Footer habe ich entfernt.
     → Falls es eigene Videos/einen eigenen Kanal gibt: liefern, dann ergänze ich sie.
 
-11. **Google Maps / Reviews:** Karte per Adresse eingebettet (cookie-sicher, click-to-load).
-    Eine Place-ID wurde nicht gefunden; **es wurden KEINE Google-Bewertungen erfunden**.
-    → Falls ein Google-Unternehmensprofil existiert: Place-ID liefern, dann echte
-    Reviews + Aggregat-Rating.
+11. **Google-Bewertungen (Glaseffekt-Sektion):** Es gibt ein echtes Google-Profil mit
+    **Rating 5,0 - aber bisher nur 1 Bewertung**. Die neue Glas-Sektion zeigt das echte
+    5,0-Rating + Link zum Profil und lädt zum Bewerten ein; **es wurden KEINE Google-
+    Rezensionen erfunden**. Die Zitate daneben sind die echten /kommentare-Erfahrungs-
+    berichte (klar als solche ausgewiesen, mit Disclaimer) - NICHT als Google ausgegeben.
+    → (a) Mehr Google-Bewertungen sammeln (die Sektion skaliert automatisch). (b) Für ein
+    Live-Widget mit echten Rezensionstexten Place-ID/Google-Business-Zugang liefern - ein
+    statisches, cookie-armes Widget ist bewusst gewählt (DSGVO, Performance).
+
+12b. **Podcast eingebunden:** Video `tqcq9mVs5sg` („Gesundheit für Empathen") ist auf
+    Start- und Erfahrungsberichte-Seite eingebunden (cookie-sicher) und verlinkt - bewusst
+    **neutral betitelt** („Podcast: Im Gespräch mit Fabian Forbrig"); der Original-Titel
+    nennt „Wunder der Heilung - Krebs" und wird NICHT als Überschrift übernommen.
 
 12. **Telefon:** Mobil `0177 3710662` (WhatsApp-fähig) als primärer CTA; Festnetz
     `033082 660975` als Terminleitung mit Sprechzeit Mo-Fr 18:45-20:00 („bitte lange

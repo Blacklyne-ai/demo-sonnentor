@@ -8,9 +8,9 @@ import Sprechzeiten from '../components/Sprechzeiten.astro';
 import ContactTiles from '../components/ContactTiles.astro';
 import MapBlock from '../components/MapBlock.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
-import Testimonials from '../components/Testimonials.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, disclaimer } from '../data/site';
+import { site, disclaimer, videos } from '../data/site';
 import { methods } from '../data/methods';
 import { treatments } from '../data/treatments';
 import { werte, ausbildungen } from '../data/jobs';
@@ -160,33 +160,29 @@ import { werte, ausbildungen } from '../data/jobs';
     </div>
   </section>
 
-  <!-- ─────────────── Einblicke & Erfahrungsberichte ─────────────── -->
+  <!-- ─────────────── Einblicke: Videos & Podcast ─────────────── -->
   <section class="bg-paper">
     <div class="container-x py-20 lg:py-28">
       <SectionHeading
         eyebrow="Einblicke"
         title="Sehen, hören, ein Gefühl bekommen."
-        lead="Lernen Sie meine Arbeit in Ruhe kennen - in kurzen Videos und in den Worten von Menschen, die ich begleiten durfte."
+        lead="Lernen Sie meine Arbeit in Ruhe kennen - in zwei Videos und einem ausführlichen Podcast-Gespräch."
         class="reveal max-w-2xl"
       />
-      <div class="mt-12 grid gap-5 lg:grid-cols-2">
-        <div class="reveal"><VideoEmbed id="spznxzhWLjU" title="Einblicke in meine Arbeit" /></div>
-        <div class="reveal"><VideoEmbed id="0DyJ6HPcJuI" title="Erfahrungen & Geschichten" /></div>
+      <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {videos.map((v) => (
+          <div class="reveal"><VideoEmbed id={v.id} title={v.title} /></div>
+        ))}
       </div>
-
-      <div class="mt-16">
-        <div class="reveal flex flex-wrap items-end justify-between gap-4">
-          <h3 class="font-display text-2xl text-ink sm:text-3xl">Erfahrungsberichte</h3>
-          <a href="/erfahrungsberichte" class="inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
-            Alle Berichte lesen<Icon name="ArrowRight" size={16} />
-          </a>
-        </div>
-        <div class="mt-8">
-          <Testimonials limit={3} />
-        </div>
-      </div>
+      <p class="reveal mt-6 text-sm text-muted">
+        Videos &amp; Podcast laden erst nach Klick (YouTube, datenschutzfreundlich). Der Podcast erscheint bei
+        <a href={`https://www.youtube.com/watch?v=${videos[2].id}`} target="_blank" rel="noopener noreferrer" class="font-semibold text-clay-deep hover:text-clay-ink">„Gesundheit für Empathen"</a>.
+      </p>
     </div>
   </section>
+
+  <!-- ─────────────── Google-Bewertungen (Glaseffekt) ─────────────── -->
+  <GoogleReviews />
 
   <!-- ─────────────── Ausbildung & Karriere (Employer Branding) ─────────────── -->
   <section class="relative isolate overflow-hidden bg-sage-tint">
