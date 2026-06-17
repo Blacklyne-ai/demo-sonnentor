@@ -9,6 +9,7 @@ import ContactTiles from '../components/ContactTiles.astro';
 import MapBlock from '../components/MapBlock.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
+import Social from '../components/Social.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, disclaimer, videos } from '../data/site';
 import { methods } from '../data/methods';
@@ -45,6 +46,26 @@ import { werte, ausbildungen } from '../data/jobs';
           <a href="/ueber-mich" class="btn btn-on-dark inline-flex items-center justify-center gap-2 text-base">
             Meine Arbeit kennenlernen<Icon name="ArrowRight" size={18} />
           </a>
+        </div>
+
+        <!-- Kleines Glas-Bewertungs-Element im Hero -->
+        <div class="mt-8 hidden max-w-md rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl sm:block">
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-white">
+              <Social name="google" class="h-4 w-4" />
+            </span>
+            <span class="font-display text-base leading-none text-white">{site.google.rating}</span>
+            <span class="flex gap-0.5">
+              {Array.from({ length: 5 }).map(() => (
+                <Icon name="Star" size={13} class="text-amber fill-amber" strokeWidth={1.5} />
+              ))}
+            </span>
+            <span class="text-xs text-white/70">bei Google</span>
+          </div>
+          <div class="mt-2.5 space-y-1 text-sm text-white/85">
+            <p>„Ich fühle mich wie neu geboren." <span class="text-white/55">- Corinna B.</span></p>
+            <p>„Wieder aufrecht, ohne Schmerzen." <span class="text-white/55">- U. Kohlscheen</span></p>
+          </div>
         </div>
       </div>
     </div>
