@@ -15,6 +15,7 @@ import { site, disclaimer, videos } from '../data/site';
 import { methods } from '../data/methods';
 import { treatments } from '../data/treatments';
 import { werte, ausbildungen } from '../data/jobs';
+const podcast = videos.find((v) => v.kind === 'Podcast');
 ---
 <Layout floating={true} current="/">
   <!-- ───────────────────────── Hero ───────────────────────── -->
@@ -187,17 +188,17 @@ import { werte, ausbildungen } from '../data/jobs';
       <SectionHeading
         eyebrow="Einblicke"
         title="Sehen, hören, ein Gefühl bekommen."
-        lead="Lernen Sie meine Arbeit in Ruhe kennen - in zwei Videos und einem ausführlichen Podcast-Gespräch."
+        lead="Lernen Sie meine Arbeit in Ruhe kennen - im Praxis-Video, in zwei Filmen und einem ausführlichen Podcast-Gespräch."
         class="reveal max-w-2xl"
       />
-      <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid gap-5 sm:grid-cols-2">
         {videos.map((v) => (
           <div class="reveal"><VideoEmbed id={v.id} title={v.title} /></div>
         ))}
       </div>
       <p class="reveal mt-6 text-sm text-muted">
         Videos &amp; Podcast laden erst nach Klick (YouTube, datenschutzfreundlich). Der Podcast erscheint bei
-        <a href={`https://www.youtube.com/watch?v=${videos[2].id}`} target="_blank" rel="noopener noreferrer" class="font-semibold text-clay-deep hover:text-clay-ink">„Gesundheit für Empathen"</a>.
+        <a href={`https://www.youtube.com/watch?v=${podcast?.id}`} target="_blank" rel="noopener noreferrer" class="font-semibold text-clay-deep hover:text-clay-ink">„Gesundheit für Empathen"</a>.
       </p>
     </div>
   </section>

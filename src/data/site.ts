@@ -39,8 +39,8 @@ export const site = {
     link: 'https://www.google.com/maps/search/?api=1&query=Gesundheitspraxis+SonnenTor+Bahnhofsweg+6B+16775+Neuglobsow',
   },
 
-  // Kein eigener YouTube-Kanal: die 2 eingebundenen Videos sind Features des Kanals
-  // „Welt im Wandel.TV" (neutral betitelt, cookie-sicher eingebettet).
+  // Eigener YouTube-Kanal (via Channel-Feed gefunden) mit eigenem Intro-Video.
+  youtube: 'https://www.youtube.com/channel/UCk_gbi4EK-C2hEp8yHFJRHw',
 
   // Echtes Google-Profil (Stand: 5,0 von 5). Direkte Place-ID/Bewertungs-Deeplink:
   // Operator-TODO #11 - der Such-Link landet zuverlässig auf dem Profil.
@@ -84,10 +84,12 @@ export const disclaimer = {
     'Erfahrungsberichte schildern persönliche Eindrücke einzelner Menschen. Sie sind kein Versprechen für einen Behandlungserfolg.',
 } as const;
 
-// Eingebundene Videos (cookie-sicher, neutral betitelt). 1-2: Features von
-// „Welt im Wandel.TV"; 3: Podcast von „Gesundheit für Empathen". Original-Titel
-// nennen „Wunder der Heilung / Krebs" - bewusst NICHT als Überschrift übernommen.
+// Eingebundene Videos (cookie-sicher, neutral betitelt). 1: eigenes Intro-Video der
+// Praxis; 2-3: Features von „Welt im Wandel.TV"; 4: Podcast von „Gesundheit für
+// Empathen". Reißerische Original-Titel („Wunder der Heilung / Krebs", „Nichts ist
+// unheilbar") bewusst NICHT als Überschrift übernommen.
 export const videos = [
+  { id: 'Ewuu-LszUM4', title: 'Die Praxis stellt sich vor', kind: 'Video' },
   { id: 'spznxzhWLjU', title: 'Einblicke in meine Arbeit', kind: 'Video' },
   { id: '0DyJ6HPcJuI', title: 'Erfahrungen & Geschichten', kind: 'Video' },
   { id: 'tqcq9mVs5sg', title: 'Podcast: Im Gespräch mit Fabian Forbrig', kind: 'Podcast' },

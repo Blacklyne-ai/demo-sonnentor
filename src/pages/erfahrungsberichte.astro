@@ -35,7 +35,7 @@ import { videos } from '../data/site';
           Schauen Sie in meine Videos und gewinnen Sie einen ruhigen, ehrlichen Eindruck von meiner Arbeit.
         </p>
       </div>
-      <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid gap-5 sm:grid-cols-2">
         {videos.map((v) => (
           <div class="reveal"><VideoEmbed id={v.id} title={v.title} /></div>
         ))}

@@ -62,13 +62,14 @@ erfunden; wo Substanz fehlte, steht hier ein TODO statt einer Erfindung.
 9. **Domain-Platzhalter:** `demo-sonnentor.pages.dev` in `src/data/site.ts`
    (url) sowie in SchemaOrg/canonical/OG. → Vor Go-Live auf echte Domain umstellen.
 
-10. **YouTube:** Die 2 Videos der alten Startseite (IDs `spznxzhWLjU`, `0DyJ6HPcJuI`) sind
-    auf der neuen Startseite eingebunden - cookie-konform (nocookie, Klick-zum-Laden) und
-    bewusst **neutral betitelt** („Einblicke in meine Arbeit", „Erfahrungen & Geschichten").
-    Es sind **Features des Kanals „Welt im Wandel.TV"** (kein eigener SonnenTor-Kanal); die
-    Original-Titel („Wunderheilung von Krebs …", „Nichts ist unheilbar …") wurden NICHT als
-    Überschrift übernommen. Den toten „YouTube-Kanal"-Link im Footer habe ich entfernt.
-    → Falls es eigene Videos/einen eigenen Kanal gibt: liefern, dann ergänze ich sie.
+10. **YouTube:** Es GIBT einen eigenen Kanal („gesundheitspraxis-sonnentor",
+    youtube.com/channel/UCk_gbi4EK-C2hEp8yHFJRHw) mit dem eigenen **Intro-Video
+    `Ewuu-LszUM4`** („Bei uns geschieht Heilung") - das ist jetzt das erste Video auf Start-
+    und Erfahrungsberichte-Seite, und der Kanal ist wieder im Footer verlinkt. Dazu zwei
+    Features von „Welt im Wandel.TV" und ein Podcast. Alle cookie-sicher (nocookie,
+    Klick-zum-Laden) und **neutral betitelt** - die reißerischen Original-Titel
+    („Wunderheilung von Krebs …", „Nichts ist unheilbar …", „Wunder der Heilung") wurden
+    NICHT als Überschrift übernommen. → Falls es weitere eigene Videos gibt: gern ergänzen.
 
 11. **Google-Bewertungen (Glaseffekt-Sektion):** Es gibt ein echtes Google-Profil mit
     **Rating 5,0 - aber bisher nur 1 Bewertung**. Die neue Glas-Sektion zeigt das echte
@@ -78,6 +79,12 @@ erfunden; wo Substanz fehlte, steht hier ein TODO statt einer Erfindung.
     → (a) Mehr Google-Bewertungen sammeln (die Sektion skaliert automatisch). (b) Für ein
     Live-Widget mit echten Rezensionstexten Place-ID/Google-Business-Zugang liefern - ein
     statisches, cookie-armes Widget ist bewusst gewählt (DSGVO, Performance).
+    Ich habe das Profil aktiv gesucht: es liegt unter **Bahnhofsweg 6b, 16775 Stechlin**
+    (mit GBP-Attributen wie barrierefreiem Parkplatz); der „Auf Google ansehen"-Such-Link
+    landet zuverlässig auf genau diesem Profil. Die exakte CID/Place-ID ist serverseitig
+    nicht auslesbar (Google Consent-/JS-Wall) - dafür einmal den Profil-Link schicken
+    (Google Maps → Profil → Teilen → Link kopieren). **Vorsicht:** es gibt einen veralteten
+    Zweit-Eintrag in Lindetal (Rosenhagen 15) - der ist NICHT zu verlinken.
 
 12b. **Podcast eingebunden:** Video `tqcq9mVs5sg` („Gesundheit für Empathen") ist auf
     Start- und Erfahrungsberichte-Seite eingebunden (cookie-sicher) und verlinkt - bewusst
