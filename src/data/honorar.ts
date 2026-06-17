@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Honorar — verbatim von /allgemein-honorar/ und den Honorar-Unterseiten.
+// Honorar - verbatim von /allgemein-honorar/ und den Honorar-Unterseiten.
 // Transparent & ehrlich. Behandlungskomplexe sind individuell zugeschnitten
 // und umfassen mehrere Sitzungen (ausführliches Therapiegespräch +
 // Behandlungskomplex + Trainingsprogramm). NICHTS hinzugefügt.

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Ausbildung & Karriere — Employer Branding.
+// Ausbildung & Karriere - Employer Branding.
 // Belegt ist NUR die Ausbildung (4 Tracks, verbatim /heilmethoden/wir-bilden-aus/).
 // Konkrete bezahlte Stellen, Vergütung, Umfang, Teamgröße: NICHT auf der alten
 // Site -> hier ehrlich als „im Erstgespräch zu besprechen" gehalten, Operator-TODO
@@ -14,7 +14,7 @@ export const ausbildungen = [
   { name: 'Meditation', detail: 'Meditations-Trainer und Lehrer', icon: 'Flower2' },
 ];
 
-// „So arbeiten wir" — ehrlich aus Haltung + Ort + Lehre abgeleitet.
+// „So arbeiten wir" - ehrlich aus Haltung + Ort + Lehre abgeleitet.
 export const werte = [
   {
     icon: 'Footprints',

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Behandlungsschwerpunkte — verbatim-abgeleitet (docs/research/behandlung.md).
+// Behandlungsschwerpunkte - verbatim-abgeleitet (docs/research/behandlung.md).
 // Selbstbewusst beschreibend (Unterstützung, Linderung, Begleitung). Schwere
 // Erkrankungen ausschließlich als BEGLEITENDE Behandlung; reißerische bzw.
 // garantieartige Formeln der alten Site bewusst nicht übernommen.

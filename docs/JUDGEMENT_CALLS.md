@@ -62,10 +62,13 @@ erfunden; wo Substanz fehlte, steht hier ein TODO statt einer Erfindung.
 9. **Domain-Platzhalter:** `demo-sonnentor.pages.dev` in `src/data/site.ts`
    (url) sowie in SchemaOrg/canonical/OG. → Vor Go-Live auf echte Domain umstellen.
 
-10. **YouTube:** 2 Videos eingebunden (IDs `spznxzhWLjU`, `0DyJ6HPcJuI`), cookie-konform
-    (nocookie, Klick-zum-Laden), neutral betitelt („Einblicke", „Erfahrungen"). Kanal-URL
-    `@gesundheitspraxissonnentor` ist geraten. → Echte Kanal-URL + gewünschte Videos
-    bestätigen.
+10. **YouTube:** Die 2 Videos der alten Startseite (IDs `spznxzhWLjU`, `0DyJ6HPcJuI`) sind
+    auf der neuen Startseite eingebunden - cookie-konform (nocookie, Klick-zum-Laden) und
+    bewusst **neutral betitelt** („Einblicke in meine Arbeit", „Erfahrungen & Geschichten").
+    Es sind **Features des Kanals „Welt im Wandel.TV"** (kein eigener SonnenTor-Kanal); die
+    Original-Titel („Wunderheilung von Krebs …", „Nichts ist unheilbar …") wurden NICHT als
+    Überschrift übernommen. Den toten „YouTube-Kanal"-Link im Footer habe ich entfernt.
+    → Falls es eigene Videos/einen eigenen Kanal gibt: liefern, dann ergänze ich sie.
 
 11. **Google Maps / Reviews:** Karte per Adresse eingebettet (cookie-sicher, click-to-load).
     Eine Place-ID wurde nicht gefunden; **es wurden KEINE Google-Bewertungen erfunden**.
@@ -84,6 +87,13 @@ erfunden; wo Substanz fehlte, steht hier ein TODO statt einer Erfindung.
 14. **Kein Kontaktformular** (bewusst): WhatsApp/Telefon/E-Mail/Anfahrt als Tiles -
     datensparsam im Gesundheitskontext. Die alte Seite hatte ein Formular; bewusst nicht
     übernommen.
+
+16. **Vollständiges Leistungsverzeichnis übernommen:** Die 4 Footer-Kategorien der alten
+    Seite (Wir behandeln bei / helfen bei / wenden an / bieten an) sind jetzt komplett &
+    verbatim auf `/methoden` („Anwendungen & Angebote im Überblick") und je relevant auch
+    auf den Methoden-Unterseiten. Die B2B-Seite **/partner/** (Anfrageformular für
+    ganzheitlich orientierte Ärzte/Heilpraktiker) wurde **nicht** übernommen - Nischen-
+    Funktion. → Bei Bedarf liefere ich eine schlanke Partner-Sektion nach.
 
 15. **„Presse" der alten Seite (Spiegel 33/2011) NICHT übernommen** - die zitierten
     Spiegel-Artikel sind kritische/allgemeine Stücke, kein Praxis-Porträt; als „Presse"

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Erfahrungsberichte — echte Patientenstimmen von /kommentare/ (verbatim),
+// Erfahrungsberichte - echte Patientenstimmen von /kommentare/ (verbatim),
 // kuratiert auf die ruhigsten 6 und behutsam entschärft: konkrete medizinische
 // Heil-/Garantie-Schlüsse (Gradzahlen, „Krebs ohne Chemo", „verschwunden") sind
 // herausgenommen, die persönliche Dankbarkeit & das Wohlbefinden bleiben.

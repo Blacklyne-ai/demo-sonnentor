@@ -24,7 +24,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const fullTitle = title ? `${title} – ${site.name}` : `${site.name} – Geistiges Heilen am Stechlinsee`;
+const fullTitle = title ? `${title} - ${site.name}` : `${site.name} - Geistiges Heilen am Stechlinsee`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL(image, site.url).href;
 ---

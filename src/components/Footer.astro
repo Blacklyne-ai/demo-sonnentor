@@ -1,6 +1,5 @@
 ---
 import Icon from './Icon.astro';
-import Social from './Social.astro';
 import { site, footerNav, disclaimer } from '../data/site';
 const year = 2026;
 ---
@@ -31,12 +30,9 @@ const year = 2026;
             {site.address.street}, {site.address.zip} {site.address.city}
           </p>
         </div>
-        <div class="mt-6 flex gap-2.5">
-          <a href={site.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube-Kanal"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition-colors hover:border-amber hover:bg-amber/15 hover:text-white">
-            <Social name="youtube" class="h-[18px] w-[18px]" />
-          </a>
-        </div>
+        <a href={site.phone.href} class="btn btn-amber mt-7 inline-flex items-center gap-2">
+          <Icon name="Phone" size={17} />Termin anfragen
+        </a>
       </div>
 
       <!-- Nav-Spalten -->
@@ -61,7 +57,7 @@ const year = 2026;
     </p>
 
     <div class="mt-7 flex flex-col gap-3 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
-      <p>© {site.since}–{year} {site.name}</p>
+      <p>© {site.since}-{year} {site.name}</p>
       <p class="flex flex-wrap items-center gap-x-5 gap-y-1">
         <a href="/impressum" class="transition-colors hover:text-white">Impressum</a>
         <a href="/datenschutz" class="transition-colors hover:text-white">Datenschutz</a>

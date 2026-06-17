@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// Heilmethoden — Inhalte verbatim-abgeleitet aus der alten Site
+// Heilmethoden - Inhalte verbatim-abgeleitet aus der alten Site
 // (docs/research/methoden.md). Beschreibungen ruhig gefasst; die wenigen
 // Garantie-/Quoten-Formeln (z. B. „nahezu 100 %", „Anti-Krebs") bewusst
 // ausgelassen. RA-MARIA® = Methodenmarke der Praxis.
@@ -124,18 +124,109 @@ export const methods: Method[] = [
   },
 ];
 
-// „Wir behandeln bei" — Indikationen des Geistigen Heilens (verbatim Liste).
-export const indications = [
-  'Schmerzen aller Art',
-  'Beinlängendifferenzen',
-  'Diabetes',
-  'Hautprobleme',
-  'Beckenschiefstand',
-  'Rheuma',
-  'Innere Krankheiten',
-  'Knochenerkrankungen',
-  'Blutdruck',
-  'Entzündungen',
-  'Wirbelsäulenverkrümmung',
-  'Kinderkrankheiten',
+// Vollständiges Leistungsverzeichnis (verbatim von der alten Site, Footer-Modul auf
+// jeder Seite). Vier Kategorien, jeweils einer Methode zugeordnet. Wird auf der
+// /methoden-Übersicht komplett und auf den jeweiligen Methoden-Unterseiten gezeigt.
+export interface Angebot {
+  key: string;
+  title: string;       // verbatim Kategorie-Titel der alten Site
+  intro: string;       // ruhiger Einleitungssatz
+  method: string;      // slug der zugehörigen Methode
+  methodName: string;
+  icon: string;
+  items: string[];
+}
+
+export const angebote: Angebot[] = [
+  {
+    key: 'behandeln',
+    title: 'Wir behandeln bei',
+    intro: 'Geistiges Heilen begleitet bei einem breiten Spektrum körperlicher Themen.',
+    method: 'geistheilung',
+    methodName: 'Geistiges Heilen',
+    icon: 'HandHeart',
+    items: [
+      'Schmerzen aller Art',
+      'Beinlängendifferenzen',
+      'Diabetes',
+      'Kinderkrankheiten',
+      'Hautprobleme',
+      'Beckenschiefstand',
+      'Rheuma',
+      'Innere Krankheiten',
+      'Knochenerkrankungen',
+      'Blutdruck',
+      'Entzündungen',
+      'Wirbelsäulenverkrümmung',
+    ],
+  },
+  {
+    key: 'helfen',
+    title: 'Wir helfen bei',
+    intro: 'Mit Hypnose lassen sich Verhaltensweisen dort verändern, wo sie entstehen - im Unterbewusstsein.',
+    method: 'hypnose',
+    methodName: 'Hypnose',
+    icon: 'MoonStar',
+    items: [
+      'Raucherentwöhnung',
+      'Stressbewältigung',
+      'Lernblockaden',
+      'Sportleistungssteigerung',
+      'Gewichtsreduzierung',
+      'Mentale Vorbereitung auf den Flug',
+      'Prüfungsangst',
+      'Auflösung von Lampenfieber',
+      'Verstärkung von Fähigkeiten',
+      'Schlafstörungen',
+      'Charisma-Training',
+      'Wunschhypnose',
+      'Blockadenlösung',
+      'Tiefenentspannung',
+    ],
+  },
+  {
+    key: 'wenden',
+    title: 'Wir wenden an',
+    intro: 'Wohlfühl- und Energiemassagen zur Beruhigung, Stärkung und tiefen Selbstheilung.',
+    method: 'massage',
+    methodName: 'Energiemassagen',
+    icon: 'Hand',
+    items: [
+      'Wirbelsäulen-Energiemassage (Breuss / Dr. Usui)',
+      'Klassische Rückenmassage',
+      'Gesichts- und Dekolleté-Energiemassage',
+      'Hand- und Arm-Energiemassage',
+      'Blutrückholmassage',
+      'Lymphdrainage',
+      'Bindegewebsmassage',
+      'Reflexzonenmassage',
+    ],
+  },
+  {
+    key: 'bieten',
+    title: 'Wir bieten an',
+    intro: 'Meditationen, Qi Gong und Atemtechniken zur Kräftigung von Körper, Geist und Seele.',
+    method: 'qi-gong',
+    methodName: 'Qi Gong & Meditationen',
+    icon: 'Sprout',
+    items: [
+      'Chakra- & Farb-Meditationen',
+      'Aktive & passive Meditationen',
+      'Mantra-Meditationen',
+      'Qi Gong Übungen',
+      'Geh-Meditationen',
+      'Tanz-Meditationen',
+      'Benson-Methode',
+      'Zazen-Meditationen',
+      'Vokal-Meditationen',
+      'Geführte Meditationen',
+      'Vipassana-Meditationen',
+      'Analytische Meditationen',
+      'Pädagogische Interventionen',
+      'Atemtechnik & Körperwahrnehmung',
+    ],
+  },
 ];
+
+// Rückwärtskompatibler Alias (Geistiges-Heilen-Indikationen).
+export const indications = angebote[0].items;

@@ -1,5 +1,5 @@
 ---
-// JSON-LD. Nur belegte Daten — KEINE erfundene aggregateRating/Reviews.
+// JSON-LD. Nur belegte Daten - KEINE erfundene aggregateRating/Reviews.
 import { site, sprechzeit } from '../data/site';
 const schema = {
   '@context': 'https://schema.org',
@@ -36,7 +36,6 @@ const schema = {
       closes: '20:00',
     },
   },
-  sameAs: [site.youtube],
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />

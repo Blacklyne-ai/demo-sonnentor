@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────────────────────────
-   Gesundheitspraxis SonnenTor — global stylesheet
+   Gesundheitspraxis SonnenTor - global stylesheet
    Selbst-gehostete Schriften (latin, font-display:optional -> kein CLS-Swap),
    Design-Tokens in :root, eigene Regeln strikt in @layer base/components
    (sonst überstimmen sie Tailwind-Utilities).
@@ -12,7 +12,7 @@
    CtaBand/Footer/Video. Single Source of Truth: :root (RGB-Tripel).
    ─────────────────────────────────────────────────────────────── */
 
-/* Open Sans — ruhige humanistische Sans (Body / UI) */
+/* Open Sans - ruhige humanistische Sans (Body / UI) */
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -41,7 +41,7 @@
   font-display: optional;
   src: url('/fonts/open-sans-latin-700-normal.woff2') format('woff2');
 }
-/* Fraunces — warmer, organischer Display-Serif (spirituelle Wärme; opsz+wght) */
+/* Fraunces - warmer, organischer Display-Serif (spirituelle Wärme; opsz+wght) */
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
@@ -56,8 +56,8 @@
 @tailwind utilities;
 
 :root {
-  /* — warmes, ruhiges Fundament (Text in warmem Espresso, nicht kühlem Slate) — */
-  --rgb-ink: 42 35 32;        /* #2A2320  warmes Beinahe-Schwarz — Fließtext */
+  /* - warmes, ruhiges Fundament (Text in warmem Espresso, nicht kühlem Slate) - */
+  --rgb-ink: 42 35 32;        /* #2A2320  warmes Beinahe-Schwarz - Fließtext */
   --rgb-ink-soft: 87 75 67;   /* #574B43  sekundärer Text */
   --rgb-muted: 140 128 117;   /* #8C8075  Meta / Captions */
   --rgb-paper: 251 248 243;   /* #FBF8F3  Basis-BG, warmes Off-White (~80 %) */
@@ -65,25 +65,25 @@
   --rgb-mist: 234 238 230;    /* #EAEEE6  ruhige Salbei-getönte Sektion */
   --rgb-border: 231 221 208;  /* #E7DDD0  weiche warme Linie */
 
-  /* — Clay / Rot aus dem Logo (Marken-Signatur) — */
+  /* - Clay / Rot aus dem Logo (Marken-Signatur) - */
   --rgb-clay: 220 74 62;      /* #DC4A3E  Logo-Korall, minimal vertieft */
   --rgb-clay-deep: 184 58 47; /* #B83A2F  Buttons / Vollton (AA weißer Text, 5.7:1) */
   --rgb-clay-ink: 140 42 34;  /* #8C2A22  tiefes Terrakotta (Akzent-Text auf Hell, AA) */
   --rgb-clay-tint: 250 232 228;/* #FAE8E4  blasser Rot-Wash */
 
-  /* — Bernstein / Sonnenaufgang (zweite Wärme, „SonnenTor") — */
-  --rgb-amber: 233 162 60;    /* #E9A23C  warmes Gold — nur mit dunklem Text */
+  /* - Bernstein / Sonnenaufgang (zweite Wärme, „SonnenTor") - */
+  --rgb-amber: 233 162 60;    /* #E9A23C  warmes Gold - nur mit dunklem Text */
   --rgb-amber-deep: 201 130 42;/* #C9822A  Hover/Border */
   --rgb-amber-ink: 133 83 19; /* #855313  dunkles Gold (Akzent-Text auf Hell, AA) */
   --rgb-amber-tint: 251 240 220;/* #FBF0DC  blasser Gold-Wash */
 
-  /* — Salbei / Natur (ruhiger Dritter, Stechlinsee) — */
+  /* - Salbei / Natur (ruhiger Dritter, Stechlinsee) - */
   --rgb-sage: 127 154 111;    /* #7F9A6F  ruhiges Naturgrün */
   --rgb-sage-deep: 92 122 78; /* #5C7A4E  Vollton (AA weißer Text, 4.8:1) */
   --rgb-sage-ink: 68 87 47;   /* #44572F  tiefes Moos (Akzent-Text auf Hell, AA) */
   --rgb-sage-tint: 235 241 229;/* #EBF1E5  blasser Grün-Wash */
 
-  /* — warmes Dunkel (CtaBand / Footer / Video) — kein kühles Anthrazit — */
+  /* - warmes Dunkel (CtaBand / Footer / Video) - kein kühles Anthrazit - */
   --rgb-dark: 36 28 24;       /* #241C18  warmes Espresso */
   --rgb-dark-deep: 22 15 12;  /* #160F0C */
   --rgb-dark-soft: 59 46 38;  /* #3B2E26 */
@@ -120,11 +120,11 @@
 }
 
 @layer components {
-  /* Inhaltsbreite — großzügig, ruhig */
+  /* Inhaltsbreite - großzügig, ruhig */
   .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12; }
   .container-tight { @apply mx-auto w-full max-w-3xl px-5 sm:px-8; }
 
-  /* Buttons — KEIN display hier (Memory: sonst killt es hidden/md:inline-flex).
+  /* Buttons - KEIN display hier (Memory: sonst killt es hidden/md:inline-flex).
      Markup setzt inline-flex items-center selbst. Schlank halten (Memory). */
   .btn {
     @apply rounded-pill font-semibold leading-none transition-colors duration-200;
@@ -132,7 +132,7 @@
     font-size: 0.95rem;
   }
   .btn-primary { @apply bg-clay-deep text-white hover:bg-clay-ink; }
-  .btn-amber   { @apply bg-amber text-ink hover:bg-amber-deep; }        /* warme Signatur — dunkler Text */
+  .btn-amber   { @apply bg-amber text-ink hover:bg-amber-deep; }        /* warme Signatur - dunkler Text */
   .btn-sage    { @apply bg-sage-deep text-white hover:bg-sage-ink; }
   .btn-outline { @apply border border-line bg-white/70 text-ink hover:border-clay hover:text-clay-ink; }
   .btn-on-dark { @apply bg-white text-ink hover:bg-amber-tint; }
@@ -144,7 +144,7 @@
   }
   .card-hover:hover { @apply -translate-y-1 shadow-lift; border-color: rgb(var(--rgb-clay) / 0.4); }
 
-  /* dezente Eyebrow — sparsam einsetzen, NICHT über jede Headline.
+  /* dezente Eyebrow - sparsam einsetzen, NICHT über jede Headline.
      Warmer Marker-Strich links als ruhige Marken-Signatur. */
   .eyebrow {
     @apply inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.18em] text-clay-ink;
@@ -164,7 +164,7 @@
   .longform a { @apply text-clay-ink underline decoration-clay/30 hover:decoration-clay; }
   .longform strong { @apply text-ink font-semibold; }
 
-  /* Scroll-Reveal — nur aktiv wenn JS da ist (kein FOUC ohne JS) */
+  /* Scroll-Reveal - nur aktiv wenn JS da ist (kein FOUC ohne JS) */
   .has-js .reveal {
     opacity: 0;
     transform: translateY(20px);

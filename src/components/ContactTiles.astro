@@ -8,7 +8,7 @@ const body = encodeURIComponent(
   'Hallo Herr Forbrig,\n\nich würde mich gern bei Ihnen vorstellen. Es geht um:\n\nIn zwei, drei Sätzen mein Anliegen:\n\nGern können wir telefonieren. Viele Grüße',
 );
 const tiles = [
-  { icon: 'Phone', label: 'Anrufen', value: site.phone.display, href: site.phone.href, note: `Sprechzeit ${sprechzeit.daysLabel.replace(' – ', '–')} ${sprechzeit.timeLabel}` },
+  { icon: 'Phone', label: 'Anrufen', value: site.phone.display, href: site.phone.href, note: `Sprechzeit ${sprechzeit.daysLabel.replace(' - ', '-')} ${sprechzeit.timeLabel}` },
   { icon: 'MessageCircle', label: 'WhatsApp', value: site.whatsapp.display, href: site.whatsapp.href, note: 'Kurze Nachricht schreiben', external: true },
   { icon: 'Mail', label: 'E-Mail', value: site.email, href: `mailto:${site.email}?subject=${subject}&body=${body}`, note: 'Ich antworte persönlich' },
   { icon: 'MapPin', label: 'Anfahrt', value: `${site.address.city} am Stechlinsee`, href: site.maps.link, note: 'Route planen', external: true },
