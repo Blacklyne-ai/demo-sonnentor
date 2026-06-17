@@ -12,7 +12,7 @@ const { src, link, label } = Astro.props;
     </span>
     <p class="px-6 text-sm text-ink-soft">{label}</p>
     <div class="flex flex-wrap items-center justify-center gap-2">
-      <button type="button" class="embed-load btn btn-primary inline-flex items-center gap-2 text-sm" data-src={src} data-title={`Karte: ${label}`}>
+      <button type="button" class="embed-load btn btn-primary inline-flex items-center gap-2 text-sm" data-src={src} data-title={`Karte: ${label}`} data-autoload>
         <Icon name="MapPin" size={15} />Karte laden
       </button>
       <a href={link} target="_blank" rel="noopener noreferrer" class="btn btn-outline inline-flex items-center gap-2 text-sm">

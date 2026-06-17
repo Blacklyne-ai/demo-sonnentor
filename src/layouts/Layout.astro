@@ -154,22 +154,32 @@ const ogImage = new URL(image, site.url).href;
       });
 
       // ── Click-to-load Embeds (YouTube/Maps, cookie-sicher) ────────────
+      const loadEmbed = (btn: HTMLElement) => {
+        const host = btn.closest('.embed-host');
+        const src = btn.getAttribute('data-src');
+        if (!host || !src) return;
+        const iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.loading = 'lazy';
+        iframe.title = btn.getAttribute('data-title') || 'Eingebetteter Inhalt';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.className = 'absolute inset-0 h-full w-full border-0';
+        host.innerHTML = '';
+        host.appendChild(iframe);
+      };
       document.querySelectorAll<HTMLElement>('.embed-load').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const host = btn.closest('.embed-host');
-          const src = btn.getAttribute('data-src');
-          if (!host || !src) return;
-          const iframe = document.createElement('iframe');
-          iframe.src = src;
-          iframe.loading = 'lazy';
-          iframe.title = btn.getAttribute('data-title') || 'Eingebetteter Inhalt';
-          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-          iframe.allowFullscreen = true;
-          iframe.className = 'absolute inset-0 h-full w-full border-0';
-          host.innerHTML = '';
-          host.appendChild(iframe);
-        });
+        btn.addEventListener('click', () => loadEmbed(btn));
       });
+      // Karte automatisch laden, sobald „Alle akzeptieren" erteilt wurde (DSGVO-konform).
+      // Videos bleiben bewusst Klick-zum-Laden (kein Autoplay-Überfall).
+      const autoloadMaps = () => {
+        if (document.documentElement.dataset.consent === 'all') {
+          document.querySelectorAll<HTMLElement>('.embed-load[data-autoload]').forEach((btn) => loadEmbed(btn));
+        }
+      };
+      autoloadMaps();
+      window.addEventListener('tp-consent', autoloadMaps);
     </script>
   </body>
 </html>
