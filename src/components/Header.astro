@@ -1,0 +1,102 @@
+---
+import Icon from './Icon.astro';
+import { site, primaryNav } from '../data/site';
+
+interface Props { floating?: boolean; current?: string }
+const { floating = false, current = '' } = Astro.props;
+---
+<header
+  id="site-header"
+  data-floating={floating ? '' : undefined}
+  class="site-header fixed inset-x-0 top-0 z-50 transition-[background,box-shadow,border-color] duration-300"
+>
+  <div class="container-x flex h-[64px] items-center justify-between gap-4 sm:h-[78px]">
+    <a href="/" class="nav-brand group flex shrink-0 items-center gap-2.5" aria-label={`${site.name} – Startseite`}>
+      <img src="/logo.png" alt="" aria-hidden="true" width="44" height="44"
+        class="h-9 w-9 shrink-0 sm:h-10 sm:w-10" />
+      <span class="leading-none">
+        <span class="block text-[0.62rem] font-semibold uppercase tracking-[0.2em] opacity-70">Gesundheitspraxis</span>
+        <span class="mt-0.5 block font-display text-[1.35rem] leading-none">SonnenTor</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-0.5" aria-label="Hauptnavigation">
+      {primaryNav.map((item) => (
+        <a href={item.href}
+          class:list={['nav-link rounded-full px-2.5 py-2 text-[0.92rem] font-medium transition-colors',
+            current === item.href && 'is-current']}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href={site.phone.href}
+        class="nav-phone hidden xl:inline-flex items-center gap-2 text-[0.92rem] font-semibold transition-colors">
+        <Icon name="Phone" size={16} strokeWidth={2.2} />
+        <span>{site.phone.display}</span>
+      </a>
+      <a href="/kontakt" class="btn btn-primary hidden sm:inline-flex items-center gap-1.5">
+        Termin anfragen
+        <Icon name="CalendarCheck" size={16} strokeWidth={2.2} />
+      </a>
+      <button id="nav-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu"
+        class="nav-burger inline-flex lg:hidden h-10 w-10 items-center justify-center rounded-full transition-colors">
+        <Icon name="Menu" size={22} class="burger-open" />
+        <Icon name="X" size={22} class="burger-close hidden" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile-Panel -->
+  <div id="mobile-menu" hidden
+    class="lg:hidden border-t border-line bg-paper/98 backdrop-blur-xl">
+    <nav class="container-x flex flex-col gap-1 py-5" aria-label="Mobile Navigation">
+      {primaryNav.map((item) => (
+        <a href={item.href} class="rounded-xl px-3 py-3 text-lg font-medium text-ink hover:bg-clay-tint">{item.label}</a>
+      ))}
+      <a href="/kontakt" class="rounded-xl px-3 py-3 text-lg font-medium text-ink hover:bg-clay-tint">Kontakt</a>
+      <div class="mt-4 flex flex-col gap-3 border-t border-line pt-5">
+        <a href="/kontakt" class="btn btn-primary inline-flex items-center justify-center gap-2">
+          Termin anfragen<Icon name="CalendarCheck" size={16} />
+        </a>
+        <a href={site.phone.href} class="btn btn-outline inline-flex items-center justify-center gap-2">
+          <Icon name="Phone" size={17} />{site.phone.display}
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Solid-Zustand: alle nicht-floating Header + jeder Header beim Scrollen */
+  .site-header:not([data-floating]),
+  .site-header.is-solid {
+    background: rgb(var(--rgb-paper) / 0.85);
+    backdrop-filter: saturate(1.4) blur(14px);
+    -webkit-backdrop-filter: saturate(1.4) blur(14px);
+    border-bottom: 1px solid rgb(var(--rgb-border) / 0.9);
+  }
+  .site-header.is-solid { box-shadow: 0 6px 28px -22px rgb(36 28 24 / 0.5); }
+
+  .site-header:not([data-floating]) .nav-link,
+  .site-header:not([data-floating]) .nav-phone,
+  .site-header:not([data-floating]) .nav-brand,
+  .site-header.is-solid .nav-link,
+  .site-header.is-solid .nav-phone,
+  .site-header.is-solid .nav-brand { color: rgb(var(--rgb-ink)); }
+  .site-header:not([data-floating]) .nav-burger,
+  .site-header.is-solid .nav-burger { color: rgb(var(--rgb-ink)); }
+
+  .nav-link:hover, .nav-phone:hover { color: rgb(var(--rgb-clay-deep)); }
+  .nav-link.is-current { color: rgb(var(--rgb-clay-deep)); background: rgb(var(--rgb-clay-tint)); }
+
+  /* Floating (über dunklem Hero): heller Text bis zum Scroll */
+  .site-header[data-floating]:not(.is-solid) .nav-link,
+  .site-header[data-floating]:not(.is-solid) .nav-phone,
+  .site-header[data-floating]:not(.is-solid) .nav-brand,
+  .site-header[data-floating]:not(.is-solid) .nav-burger { color: #fff; }
+  .site-header[data-floating]:not(.is-solid) .nav-phone:hover { color: #fff; }
+  .site-header[data-floating]:not(.is-solid) .nav-link:hover { background: rgb(255 255 255 / 0.14); }
+  .site-header[data-floating]:not(.is-solid) .nav-link.is-current { background: rgb(255 255 255 / 0.16); color:#fff; }
+</style>

@@ -1,0 +1,42 @@
+---
+// JSON-LD. Nur belegte Daten — KEINE erfundene aggregateRating/Reviews.
+import { site, sprechzeit } from '../data/site';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': ['HealthAndBeautyBusiness', 'LocalBusiness'],
+  '@id': site.url + '/#praxis',
+  name: site.name,
+  alternateName: site.kicker,
+  description:
+    'Praxis für Alternative Heilmethoden in Neuglobsow am Stechlinsee. Geistiges Heilen, Clearing, Hypnose, Meditation, Energiemassagen und Qi Gong - sowie begleitende Behandlung bei Rücken-, Kinder- und psychischen Themen. Seit 2007.',
+  url: site.url,
+  telephone: site.phone.intl,
+  email: site.email,
+  image: site.url + '/images/og.jpg',
+  logo: site.url + '/logo.png',
+  founder: { '@type': 'Person', name: site.founder },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.zip,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: 'DE',
+  },
+  areaServed: ['Neuglobsow', 'Stechlin', 'Brandenburg', 'Berlin'],
+  knowsAbout: ['Geistiges Heilen', 'Geistheilung', 'Reiki', 'Clearing', 'Hypnose', 'Meditation', 'Energiemassage', 'Qi Gong', 'Skoliose', 'Rückenschmerzen', 'Kinderheilung'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Terminvereinbarung',
+    telephone: site.phone.intl,
+    hoursAvailable: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '18:45',
+      closes: '20:00',
+    },
+  },
+  sameAs: [site.youtube],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

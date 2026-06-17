@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  href: string; icon: string; title: string; blurb: string; image: string; cta?: string;
+}
+const { href, icon, title, blurb, image, cta = 'Mehr erfahren' } = Astro.props;
+---
+<a href={href} class="card card-hover group reveal flex flex-col overflow-hidden">
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <img src={image} alt={title} width="900" height="675" loading="lazy" decoding="async"
+      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+    <span class="absolute left-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-paper/95 text-clay-deep shadow-soft backdrop-blur">
+      <Icon name={icon} size={21} strokeWidth={2} />
+    </span>
+  </div>
+  <div class="flex flex-1 flex-col p-6">
+    <h3 class="font-display text-xl text-ink">{title}</h3>
+    <p class="mt-2.5 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{blurb}</p>
+    <span class="mt-5 inline-flex items-center gap-1.5 text-[0.95rem] font-semibold text-clay-deep">
+      {cta}
+      <Icon name="ArrowRight" size={16} class="transition-transform duration-300 group-hover:translate-x-1" />
+    </span>
+  </div>
+</a>

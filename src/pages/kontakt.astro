@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import ContactTiles from '../components/ContactTiles.astro';
+import Sprechzeiten from '../components/Sprechzeiten.astro';
+import MapBlock from '../components/MapBlock.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const details = [
+  { icon: 'MapPin', label: 'Adresse', value: `${site.address.street}, ${site.address.zip} ${site.address.city} / ${site.address.district}` },
+  { icon: 'Phone', label: 'Telefon (Termine)', value: site.landline.display, href: site.landline.href, note: 'Bitte lange klingeln lassen' },
+  { icon: 'MessageCircle', label: 'Mobil & WhatsApp', value: site.phone.display, href: site.phone.href },
+  { icon: 'Mail', label: 'E-Mail', value: site.email, href: `mailto:${site.email}` },
+];
+---
+<Layout title="Kontakt" description="Kontakt zur Gesundheitspraxis SonnenTor in Neuglobsow am Stechlinsee. Termine telefonisch, Mo–Fr 18:45–20:00 Uhr." current="/kontakt">
+  <PageHero
+    eyebrow="Kontakt"
+    title="Gehen wir den ersten Schritt - am Telefon."
+    lead="Termine und Fragen besprechen wir am liebsten persönlich. Rufen Sie an, schreiben Sie - ich nehme mir Zeit für Sie."
+    breadcrumb={[{ label: 'Kontakt' }]}
+  />
+
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <ContactTiles />
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-2 lg:items-stretch">
+        <div class="reveal flex flex-col gap-6">
+          <Sprechzeiten />
+          <div class="rounded-3xl border border-line bg-white p-6 shadow-soft sm:p-7">
+            <h2 class="font-display text-xl text-ink">So erreichen Sie mich</h2>
+            <ul class="mt-5 space-y-4">
+              {details.map((d) => (
+                <li class="flex items-start gap-3.5">
+                  <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-clay-tint text-clay-deep">
+                    <Icon name={d.icon} size={19} />
+                  </span>
+                  <span>
+                    <span class="block text-sm text-muted">{d.label}</span>
+                    {d.href
+                      ? <a href={d.href} class="font-medium text-ink hover:text-clay-deep">{d.value}</a>
+                      : <span class="font-medium text-ink">{d.value}</span>}
+                    {d.note && <span class="block text-sm text-muted">{d.note}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="reveal flex">
+          <MapBlock src={site.maps.embed} link={site.maps.link} label={`${site.name}, ${site.address.street}, ${site.address.zip} ${site.address.city}`} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { treatments } from '../data/treatments';
+import { disclaimer } from '../data/site';
+---
+<Layout title="Behandlung" description="Begleitung bei Rücken & Wirbelsäule, Kindern, psychischen Leiden und schweren Erkrankungen - in der Gesundheitspraxis SonnenTor am Stechlinsee." current="/behandlung">
+  <PageHero
+    eyebrow="Behandlung"
+    title="Wobei ich Sie begleite."
+    lead="Ob Rücken, Kinder, seelische Belastung oder eine schwere Erkrankung - ich unterstütze, lindere und begleite. Selbstbewusst, aber nie mit einem Versprechen."
+    breadcrumb={[{ label: 'Behandlung' }]}
+  />
+
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-5 sm:grid-cols-2">
+        {treatments.map((t) => (
+          <ServiceCard href={`/behandlung/${t.slug}`} icon={t.icon} title={t.name} blurb={t.short} image={t.image} cta="Mehr erfahren" />
+        ))}
+      </div>
+
+      <div class="reveal mt-10 flex items-start gap-4 rounded-3xl border border-line bg-sand px-6 py-6 sm:px-8">
+        <span class="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep sm:inline-flex">
+          <Icon name="HeartHandshake" size={23} strokeWidth={1.8} />
+        </span>
+        <p class="leading-relaxed text-ink-soft">
+          <strong class="font-semibold text-ink">{disclaimer.begleitend}</strong> Gerade bei schweren
+          Erkrankungen ist mir das wichtig: Ich gebe Kraft, stabilisiere und lindere - die medizinischen
+          Entscheidungen treffen Sie gemeinsam mit Ihren Ärzten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { treatments } from '../../data/treatments';
+import { disclaimer } from '../../data/site';
+
+export function getStaticPaths() {
+  return treatments.map((t) => ({ params: { slug: t.slug }, props: { treatment: t } }));
+}
+const { treatment } = Astro.props;
+const others = treatments.filter((t) => t.slug !== treatment.slug);
+---
+<Layout title={treatment.name} description={treatment.short} current="/behandlung">
+  <PageHero
+    eyebrow={treatment.kicker}
+    title={treatment.name}
+    lead={treatment.lead}
+    image={treatment.image}
+    breadcrumb={[{ label: 'Behandlung', href: '/behandlung' }, { label: treatment.name }]}
+  />
+
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
+        <div class="reveal max-w-2xl">
+          {treatment.begleitend && (
+            <p class="mb-7 flex items-start gap-3 rounded-2xl border border-clay/20 bg-clay-tint px-5 py-4 text-[0.95rem] leading-relaxed text-clay-ink">
+              <Icon name="HeartHandshake" size={20} class="mt-0.5 shrink-0" />
+              <span><strong class="font-semibold">{disclaimer.begleitend}</strong></span>
+            </p>
+          )}
+          {treatment.body.map((p) => (
+            <p class="mt-5 text-lg leading-relaxed text-ink-soft first:mt-0">{p}</p>
+          ))}
+
+          {treatment.points && (
+            <div class="mt-9 grid gap-4 sm:grid-cols-2">
+              {treatment.points.map((pt) => (
+                <div class="rounded-2xl border border-line bg-sand p-5">
+                  <h3 class="font-display text-lg text-ink">{pt.title}</h3>
+                  <p class="mt-1.5 text-[0.92rem] leading-relaxed text-ink-soft">{pt.text}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <a href="/kontakt" class="mt-9 inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
+            Termin anfragen<Icon name="ArrowRight" size={17} />
+          </a>
+        </div>
+
+        <aside class="reveal space-y-5">
+          {treatment.honorar && (
+            <div class="rounded-3xl border border-line bg-white p-7 shadow-soft">
+              <h2 class="flex items-center gap-2.5 font-display text-xl text-ink">
+                <Icon name="HandCoins" size={22} class="text-clay-deep" />Honorar
+              </h2>
+              <dl class="mt-5 space-y-3">
+                {treatment.honorar.map((h) => (
+                  <div class="flex items-baseline justify-between gap-4 border-b border-line/70 pb-3 last:border-0 last:pb-0">
+                    <dt class="text-[0.95rem] text-ink-soft">{h.label}</dt>
+                    <dd class="shrink-0 font-display text-lg text-ink">{h.price}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p class="mt-4 text-sm leading-relaxed text-muted">
+                Behandlungskomplexe sind individuell und umfassen mehrere Sitzungen. Details besprechen wir im Erstgespräch.
+              </p>
+              <a href="/kosten" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-clay-deep hover:text-clay-ink">
+                Alle Kosten ansehen<Icon name="ArrowRight" size={15} />
+              </a>
+            </div>
+          )}
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-mist">
+    <div class="container-x py-16 lg:py-20">
+      <h2 class="reveal font-display text-2xl text-ink sm:text-3xl">Weitere Schwerpunkte</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        {others.map((t) => (
+          <a href={`/behandlung/${t.slug}`} class="card card-hover group reveal flex items-center gap-4 p-5">
+            <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep transition-colors group-hover:bg-clay-deep group-hover:text-white">
+              <Icon name={t.icon} size={22} strokeWidth={1.8} />
+            </span>
+            <span class="font-display text-[1.05rem] leading-tight text-ink">{t.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+<Layout title="Erfahrungsberichte" description="Was Menschen über ihre Begleitung in der Gesundheitspraxis SonnenTor erzählen - in ihren eigenen Worten und in kurzen Videos." current="/erfahrungsberichte">
+  <PageHero
+    eyebrow="Erfahrungsberichte"
+    title="In den Worten der Menschen, die ich begleiten durfte."
+    lead="Jeder Weg ist anders. Diese Stimmen erzählen von persönlichen Erfahrungen - ehrlich, in eigenen Worten."
+    breadcrumb={[{ label: 'Erfahrungsberichte' }]}
+  />
+
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <Testimonials />
+    </div>
+  </section>
+
+  <!-- Einblicke / Videos -->
+  <section class="bg-mist">
+    <div class="container-x py-16 lg:py-24">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <span class="eyebrow no-rule mb-4 justify-center">Einblicke</span>
+        <h2 class="text-balance text-3xl text-ink sm:text-4xl">Sehen Sie selbst.</h2>
+        <p class="mt-4 leading-relaxed text-ink-soft">
+          Schauen Sie in meine Videos und gewinnen Sie einen ruhigen, ehrlichen Eindruck von meiner Arbeit.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-5 lg:grid-cols-2">
+        <div class="reveal"><VideoEmbed id="spznxzhWLjU" title="Einblicke in meine Arbeit" /></div>
+        <div class="reveal"><VideoEmbed id="0DyJ6HPcJuI" title="Erfahrungen & Geschichten" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selbstheilungs-Gedanke -->
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-20">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <Icon name="Sun" size={30} class="mx-auto text-amber-deep" strokeWidth={1.6} />
+        <p class="mt-5 text-balance font-display text-2xl leading-snug text-ink sm:text-3xl">
+          „Die Kräfte der Selbstheilung sind größer, als die meisten Menschen glauben."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

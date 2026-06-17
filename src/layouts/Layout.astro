@@ -1,0 +1,175 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  floating?: boolean;
+  current?: string;
+  noindex?: boolean;
+}
+const {
+  title,
+  description = 'Geistiges Heilen und alternative Heilmethoden in Neuglobsow am Stechlinsee - seit 2007. Begleitung bei Rücken, Kindern, psychischen Leiden und schweren Erkrankungen. Termine telefonisch.',
+  image = '/images/og.jpg',
+  floating = false,
+  current = '',
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = title ? `${title} – ${site.name}` : `${site.name} – Geistiges Heilen am Stechlinsee`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL(image, site.url).href;
+---
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.add('has-js');</script>
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#241C18" />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Schriften NICHT vorladen: font-display:optional rendert sofort in Fallback (kein
+         Render-Block, kein CLS) und lässt dem LCP-Hero-Bild die Bandbreite. Webfonts
+         laden regulär nach und „upgraden" beim nächsten Load aus dem Cache. -->
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <slot name="head" />
+    <SchemaOrg />
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-clay-deep focus:px-5 focus:py-2.5 focus:text-white">
+      Zum Inhalt springen
+    </a>
+
+    <Header floating={floating} current={current} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+    <CookieBanner />
+
+    <button id="to-top" type="button" aria-label="Nach oben" hidden
+      class="fixed bottom-5 right-5 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full bg-dark/90 text-white shadow-lift backdrop-blur transition hover:bg-clay-deep">
+      <Icon name="ArrowDown" size={20} class="rotate-180" />
+    </button>
+
+    <script>
+      // ── Header solid-on-scroll + back-to-top ──────────────────────────
+      const header = document.getElementById('site-header');
+      const toTop = document.getElementById('to-top');
+      const onScroll = () => {
+        const y = window.scrollY;
+        header?.classList.toggle('is-solid', y > 32);
+        if (toTop) toTop.hidden = y < 600;
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      toTop?.addEventListener('click', () =>
+        window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+
+      // ── Mobile-Menü ───────────────────────────────────────────────────
+      const toggle = document.getElementById('nav-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const openIco = document.querySelector('.burger-open');
+      const closeIco = document.querySelector('.burger-close');
+      const setMenu = (open: boolean) => {
+        if (!menu || !toggle) return;
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+        openIco?.classList.toggle('hidden', open);
+        closeIco?.classList.toggle('hidden', !open);
+        header?.classList.toggle('is-solid', open || window.scrollY > 32);
+      };
+      toggle?.addEventListener('click', () => setMenu(menu?.hidden ?? true));
+      menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+      window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setMenu(false); });
+
+      // ── Scroll-Reveal ─────────────────────────────────────────────────
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reveals = document.querySelectorAll('.reveal');
+      if (reduce || !('IntersectionObserver' in window)) {
+        reveals.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const el = e.target as HTMLElement;
+              const d = el.dataset.delay;
+              if (d) el.style.transitionDelay = d + 'ms';
+              el.classList.add('is-visible');
+              io.unobserve(el);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+        reveals.forEach((el) => io.observe(el));
+      }
+
+      // ── Vorher/Nachher-Slider ─────────────────────────────────────────
+      document.querySelectorAll<HTMLElement>('.ba-slider').forEach((slider) => {
+        const range = slider.querySelector<HTMLInputElement>('.ba-range');
+        const setPos = (v: number) => slider.style.setProperty('--pos', v + '%');
+        range?.addEventListener('input', () => setPos(Number(range.value)));
+        const drag = (clientX: number) => {
+          const r = slider.getBoundingClientRect();
+          const pct = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
+          setPos(pct);
+          if (range) range.value = String(pct);
+        };
+        let active = false;
+        slider.addEventListener('pointerdown', (e) => { active = true; drag(e.clientX); });
+        window.addEventListener('pointermove', (e) => { if (active) drag(e.clientX); });
+        window.addEventListener('pointerup', () => { active = false; });
+      });
+
+      // ── Click-to-load Embeds (YouTube/Maps, cookie-sicher) ────────────
+      document.querySelectorAll<HTMLElement>('.embed-load').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const host = btn.closest('.embed-host');
+          const src = btn.getAttribute('data-src');
+          if (!host || !src) return;
+          const iframe = document.createElement('iframe');
+          iframe.src = src;
+          iframe.loading = 'lazy';
+          iframe.title = btn.getAttribute('data-title') || 'Eingebetteter Inhalt';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          iframe.className = 'absolute inset-0 h-full w-full border-0';
+          host.innerHTML = '';
+          host.appendChild(iframe);
+        });
+      });
+    </script>
+  </body>
+</html>

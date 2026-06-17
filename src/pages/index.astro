@@ -1,0 +1,290 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import LiveStatus from '../components/LiveStatus.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Sprechzeiten from '../components/Sprechzeiten.astro';
+import ContactTiles from '../components/ContactTiles.astro';
+import MapBlock from '../components/MapBlock.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, disclaimer } from '../data/site';
+import { methods } from '../data/methods';
+import { treatments } from '../data/treatments';
+import { werte, ausbildungen } from '../data/jobs';
+---
+<Layout floating={true} current="/">
+  <!-- ───────────────────────── Hero ───────────────────────── -->
+  <section class="relative isolate flex min-h-[92svh] items-end overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <img src="/images/hero-lake.jpg" alt="" aria-hidden="true" width="1600" height="1100"
+        fetchpriority="high" decoding="async" class="h-full w-full object-cover object-center" />
+      <div class="absolute inset-0" style="background:linear-gradient(178deg, rgb(22 15 12 / 0.46) 0%, rgb(22 15 12 / 0.18) 34%, rgb(22 15 12 / 0.40) 64%, rgb(22 15 12 / 0.82) 100%)"></div>
+    </div>
+
+    <div class="container-x w-full pb-16 pt-32 sm:pb-20 lg:pb-24">
+      <div class="max-w-2xl">
+        <LiveStatus variant="dark" class="mb-6" />
+        <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+          <Icon name="Sun" size={16} class="text-amber" />{site.kicker}
+        </p>
+        <h1 class="mt-4 text-balance font-display text-[2.7rem] font-medium leading-[1.05] text-white sm:text-6xl lg:text-[4.1rem]"
+          style="text-shadow:0 2px 30px rgba(0,0,0,0.4)">
+          Heilung beginnt an der Wurzel.
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/90 text-pretty sm:text-xl" style="text-shadow:0 1px 12px rgba(0,0,0,0.45)">
+          Geistiges Heilen und alternative Heilmethoden in {site.place}.
+          Ich begleite Sie ein Stück Ihres Weges - mit Ruhe, Erfahrung und Respekt, seit {site.since}.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a href={site.phone.href} class="btn btn-amber inline-flex items-center justify-center gap-2 text-base">
+            <Icon name="Phone" size={18} />Termin anfragen
+          </a>
+          <a href="/ueber-mich" class="btn btn-on-dark inline-flex items-center justify-center gap-2 text-base">
+            Meine Arbeit kennenlernen<Icon name="ArrowRight" size={18} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────── Der Heiler / persönlicher Anker ─────────────────── -->
+  <section class="bg-paper">
+    <div class="container-x py-20 lg:py-28">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal relative order-2 lg:order-1">
+          <div class="relative overflow-hidden rounded-3xl shadow-lift lg:min-h-[30rem]">
+            <img src="/images/hands-light.jpg" alt="Hände, durch die warmes Licht fällt"
+              width="1000" height="750" loading="lazy" decoding="async"
+              class="h-full w-full object-cover lg:absolute lg:inset-0" />
+          </div>
+          <div class="absolute -bottom-5 -right-3 hidden max-w-[15rem] rounded-2xl border border-line bg-paper/95 p-5 shadow-lift backdrop-blur sm:block lg:right-6">
+            <p class="font-display text-lg text-ink">Dr. Fabian Forbrig</p>
+            <p class="mt-0.5 text-sm text-muted">Heiler für Mensch und Tier</p>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <span class="eyebrow mb-4">Über mich</span>
+          <h2 class="text-balance text-3xl text-ink sm:text-4xl lg:text-[2.6rem]">
+            Ich darf als Bindeglied wirken - zwischen Schöpfung und Heilung Suchenden.
+          </h2>
+          <div class="mt-5 space-y-4 leading-relaxed text-ink-soft">
+            <p>
+              Als Heiler lasse ich universelle Heilkräfte in Körper und Geist fließen - geistig und durch
+              Handauflegen. Öffnet sich ein Mensch, lässt zu und nimmt vertrauensvoll an, geschieht die Heilung.
+            </p>
+            <p>
+              Mir ist wichtig, an die Wurzeln zu gehen. Nur die Symptome zu behandeln genügt bei weitem nicht -
+              deshalb beginnt jede Begleitung mit einem sehr ausführlichen Gespräch.
+            </p>
+          </div>
+          <p class="mt-6 flex items-start gap-3 rounded-2xl border border-line bg-sand px-5 py-4 text-[0.95rem] leading-relaxed text-ink-soft">
+            <Icon name="ShieldCheck" size={20} class="mt-0.5 shrink-0 text-clay-deep" />
+            <span><strong class="font-semibold text-ink">{disclaimer.noPromise}</strong> Meine Methoden aktivieren die Selbstheilungskräfte und ersetzen nicht die Tätigkeit eines Arztes.</span>
+          </p>
+          <a href="/ueber-mich" class="mt-7 inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
+            Mehr über meinen Weg<Icon name="ArrowRight" size={17} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Methoden ───────────────────────── -->
+  <section class="bg-sand">
+    <div class="container-x py-20 lg:py-28">
+      <SectionHeading
+        eyebrow="Methoden"
+        title="Sechs Wege, die in meiner Arbeit zusammenfinden."
+        lead="Jede Begleitung ist anders. Ich wähle aus diesen Methoden das, was zu Ihnen und Ihrem Anliegen passt."
+        class="reveal max-w-2xl"
+      />
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {methods.map((m) => (
+          <ServiceCard href={`/methoden/${m.slug}`} icon={m.icon} title={m.name} blurb={m.short} image={m.image} cta="Mehr erfahren" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── Behandlungsschwerpunkte ───────────────── -->
+  <section class="bg-paper">
+    <div class="container-x py-20 lg:py-28">
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-16">
+        <SectionHeading
+          eyebrow="Behandlung"
+          title="Wobei ich Sie begleite."
+          lead="Selbstbewusst beschreibend, nie ein Versprechen: Ich unterstütze, lindere und begleite - bei einem breiten Spektrum an Themen."
+          class="reveal"
+        />
+        <p class="reveal text-[0.95rem] leading-relaxed text-muted lg:pb-2">
+          Bei schweren Erkrankungen verstehe ich meine Arbeit ausdrücklich als Begleitung,
+          ergänzend zu Ihrer ärztlichen Behandlung - nie an ihrer Stelle.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {treatments.map((t) => (
+          <a href={`/behandlung/${t.slug}`} class="card card-hover group reveal flex flex-col p-7">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep transition-colors group-hover:bg-clay-deep group-hover:text-white">
+              <Icon name={t.icon} size={23} strokeWidth={1.8} />
+            </span>
+            <h3 class="mt-5 font-display text-xl text-ink">{t.name}</h3>
+            <p class="mt-2 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{t.short}</p>
+            <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-clay-deep">
+              Mehr erfahren<Icon name="ArrowRight" size={15} class="transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Philosophie ───────────────────────── -->
+  <section class="bg-mist">
+    <div class="container-x py-20 lg:py-28">
+      <div class="mx-auto max-w-3xl text-center">
+        <Icon name="Sprout" size={32} class="mx-auto text-sage-ink" strokeWidth={1.6} />
+        <blockquote class="reveal mt-6 text-balance font-display text-2xl leading-snug text-ink sm:text-3xl lg:text-[2.4rem] lg:leading-[1.2]">
+          „Krankheiten sind Disharmonien in unserem Körper, die natürlich alle ihre Ursachen haben.
+          Um sie zu bearbeiten, ist es notwendig, an die Wurzeln zu gehen."
+        </blockquote>
+        <p class="reveal mx-auto mt-6 max-w-xl leading-relaxed text-ink-soft text-pretty">
+          Nur die Symptome zu behandeln genügt bei weitem nicht. Die Auflösung der Ursachen bildet
+          die Grundlage und die Basis meiner Behandlungen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── Einblicke & Erfahrungsberichte ─────────────── -->
+  <section class="bg-paper">
+    <div class="container-x py-20 lg:py-28">
+      <SectionHeading
+        eyebrow="Einblicke"
+        title="Sehen, hören, ein Gefühl bekommen."
+        lead="Lernen Sie meine Arbeit in Ruhe kennen - in kurzen Videos und in den Worten von Menschen, die ich begleiten durfte."
+        class="reveal max-w-2xl"
+      />
+      <div class="mt-12 grid gap-5 lg:grid-cols-2">
+        <div class="reveal"><VideoEmbed id="spznxzhWLjU" title="Einblicke in meine Arbeit" /></div>
+        <div class="reveal"><VideoEmbed id="0DyJ6HPcJuI" title="Erfahrungen & Geschichten" /></div>
+      </div>
+
+      <div class="mt-16">
+        <div class="reveal flex flex-wrap items-end justify-between gap-4">
+          <h3 class="font-display text-2xl text-ink sm:text-3xl">Erfahrungsberichte</h3>
+          <a href="/erfahrungsberichte" class="inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
+            Alle Berichte lesen<Icon name="ArrowRight" size={16} />
+          </a>
+        </div>
+        <div class="mt-8">
+          <Testimonials limit={3} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── Ausbildung & Karriere (Employer Branding) ─────────────── -->
+  <section class="relative isolate overflow-hidden bg-sage-tint">
+    <div class="container-x py-20 lg:py-28">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+        <div>
+          <SectionHeading
+            eyebrow="Ausbildung & Karriere"
+            title="Bei uns lernen, heilen, wachsen."
+            lead="Diese Praxis bildet aus - in Geistheilung, Reiki und Meditation. Wenn Sie spüren, dass dieser Weg zu Ihnen gehört, lade ich Sie ein, ihn an meiner Seite zu gehen."
+            class="reveal"
+          />
+          <div class="mt-8 grid gap-5 sm:grid-cols-2">
+            {werte.map((w) => (
+              <div class="reveal flex gap-4">
+                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-sage-ink shadow-soft">
+                  <Icon name={w.icon} size={21} strokeWidth={1.8} />
+                </span>
+                <div>
+                  <h3 class="font-display text-lg text-ink">{w.title}</h3>
+                  <p class="mt-1 text-[0.92rem] leading-relaxed text-ink-soft">{w.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="overflow-hidden rounded-3xl shadow-lift">
+            <img src="/images/forest-light.jpg" alt="Warmes Licht in einem ruhigen Wald am Stechlinsee"
+              width="1000" height="750" loading="lazy" decoding="async" class="h-56 w-full object-cover sm:h-72" />
+          </div>
+          <div class="mt-5 rounded-3xl border border-line bg-white p-7 shadow-soft">
+            <h3 class="flex items-center gap-2.5 font-display text-xl text-ink">
+              <Icon name="GraduationCap" size={22} class="text-clay-deep" />Das bilden wir aus
+            </h3>
+            <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+              {ausbildungen.map((a) => (
+                <li class="flex items-start gap-3">
+                  <Icon name="Check" size={18} class="mt-0.5 shrink-0 text-clay-deep" strokeWidth={2.4} />
+                  <span>
+                    <span class="block font-semibold text-ink">{a.name}</span>
+                    <span class="block text-sm text-muted">{a.detail}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <a href="/ausbildung-karriere" class="btn btn-primary mt-7 inline-flex w-full items-center justify-center gap-2 sm:w-auto">
+              Ausbildung & Stellen ansehen<Icon name="ArrowRight" size={17} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Kosten-Teaser ───────────────────────── -->
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-20">
+      <div class="reveal flex flex-col items-center justify-between gap-6 rounded-3xl border border-line bg-sand px-7 py-9 text-center sm:px-10 md:flex-row md:text-left">
+        <div class="flex items-start gap-4">
+          <span class="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep sm:inline-flex">
+            <Icon name="HandHeart" size={23} strokeWidth={1.8} />
+          </span>
+          <div>
+            <h2 class="font-display text-2xl text-ink">Transparente Kosten, ehrlich genannt.</h2>
+            <p class="mt-2 max-w-xl leading-relaxed text-ink-soft">
+              Jede Begleitung ist individuell. Die Honorare für einzelne Behandlungen und Behandlungskomplexe
+              finden Sie offen aufgelistet - ohne Kleingedrucktes.
+            </p>
+          </div>
+        </div>
+        <a href="/kosten" class="btn btn-outline inline-flex shrink-0 items-center gap-2">
+          Zu den Kosten<Icon name="ArrowRight" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Kontakt & Anfahrt ───────────────────────── -->
+  <section id="kontakt" class="bg-mist">
+    <div class="container-x py-20 lg:py-28">
+      <SectionHeading
+        eyebrow="Kontakt"
+        title="Gehen wir den ersten Schritt - am Telefon."
+        lead="Termine und Fragen besprechen wir am liebsten persönlich. Rufen Sie an, schreiben Sie - ich nehme mir Zeit für Sie."
+        align="center"
+        class="reveal mx-auto"
+      />
+      <div class="mx-auto mt-12 max-w-5xl">
+        <ContactTiles />
+      </div>
+      <div class="mt-6 grid gap-6 lg:grid-cols-2 lg:items-stretch">
+        <div class="reveal"><Sprechzeiten /></div>
+        <div class="reveal"><MapBlock src={site.maps.embed} link={site.maps.link} label={`${site.name}, ${site.address.street}, ${site.address.zip} ${site.address.city}`} /></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

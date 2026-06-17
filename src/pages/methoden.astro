@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { methods, indications } from '../data/methods';
+---
+<Layout title="Heilmethoden" description="Geistiges Heilen, Clearing, Hypnose, Meditation, Energiemassagen und Qi Gong - die Methoden der Gesundheitspraxis SonnenTor." current="/methoden">
+  <PageHero
+    eyebrow="Methoden"
+    title="Die Wege, auf denen ich arbeite."
+    lead="Sechs Methoden, die ich je nach Mensch und Anliegen miteinander verbinde - ruhig, achtsam und immer im Gespräch abgestimmt."
+    breadcrumb={[{ label: 'Methoden' }]}
+  />
+
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {methods.map((m) => (
+          <ServiceCard href={`/methoden/${m.slug}`} icon={m.icon} title={m.name} blurb={m.short} image={m.image} cta="Mehr erfahren" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-sand">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+        <div class="reveal">
+          <span class="eyebrow mb-4">Wobei das Geistige Heilen wirkt</span>
+          <h2 class="text-balance text-3xl text-ink sm:text-4xl">Ein breites Spektrum - ein gemeinsamer Ansatz.</h2>
+          <p class="mt-5 leading-relaxed text-ink-soft">
+            Die meisten Disharmonien unseres Körpers gehen auf Immunschwächen zurück. Deshalb arbeite ich
+            an den Ursachen - und begleite bei vielen unterschiedlichen Themen.
+          </p>
+          <p class="mt-4 font-display text-xl text-clay-ink">„Ein Versuch ist es immer wert."</p>
+        </div>
+        <div class="reveal">
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {indications.map((i) => (
+              <li class="flex items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 text-[0.95rem] text-ink-soft shadow-soft">
+                <Icon name="Check" size={17} class="shrink-0 text-clay-deep" strokeWidth={2.4} />{i}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+// Cookie-sicheres YouTube-Embed: lädt erst nach Klick (youtube-nocookie).
+interface Props { id: string; title: string; poster?: string }
+const { id, title, poster } = Astro.props;
+const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+const maxres = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+const fallback = poster || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+---
+<div class="embed-host group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-dark-deep">
+  <button type="button"
+    class="embed-load absolute inset-0 flex h-full w-full items-center justify-center"
+    data-src={src} data-title={title} aria-label={`Video laden: ${title}`}>
+    <img src={maxres} onerror={`this.onerror=null;this.src='${fallback}'`} alt="" aria-hidden="true"
+      loading="lazy" decoding="async"
+      class="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-85" />
+    <span class="absolute inset-0" style="background:linear-gradient(180deg, rgb(14 23 31 / 0.20) 0%, rgb(14 23 31 / 0) 38%, rgb(14 23 31 / 0.78) 100%)"></span>
+    <span class="relative z-10 inline-flex h-16 w-16 items-center justify-center rounded-full bg-amber text-ink shadow-lift transition duration-300 group-hover:scale-110 sm:h-[72px] sm:w-[72px]">
+      <Icon name="Play" size={28} class="ml-1" strokeWidth={2.4} />
+    </span>
+    <span class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-3 p-4 text-left sm:p-5">
+      <span class="font-medium leading-snug text-white">{title}</span>
+      <span class="hidden shrink-0 items-center gap-1.5 rounded-pill bg-white/15 px-2.5 py-1 text-[0.7rem] font-medium text-white/85 backdrop-blur sm:inline-flex">
+        <Icon name="Play" size={11} strokeWidth={2.6} />YouTube · Klick lädt
+      </span>
+    </span>
+  </button>
+</div>

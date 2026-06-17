@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+// Cookie-sicheres Google-Maps-Embed (lädt erst nach Klick).
+interface Props { src: string; link: string; label: string }
+const { src, link, label } = Astro.props;
+---
+<div class="embed-host relative aspect-[16/10] overflow-hidden rounded-3xl border border-line bg-mist">
+  <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center"
+    style="background:linear-gradient(135deg, rgb(var(--rgb-mist)), rgb(var(--rgb-clay-tint)))">
+    <span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-clay-deep shadow-soft">
+      <Icon name="MapPin" size={26} />
+    </span>
+    <p class="px-6 text-sm text-ink-soft">{label}</p>
+    <div class="flex flex-wrap items-center justify-center gap-2">
+      <button type="button" class="embed-load btn btn-primary inline-flex items-center gap-2 text-sm" data-src={src} data-title={`Karte: ${label}`}>
+        <Icon name="MapPin" size={15} />Karte laden
+      </button>
+      <a href={link} target="_blank" rel="noopener noreferrer" class="btn btn-outline inline-flex items-center gap-2 text-sm">
+        In Google Maps öffnen<Icon name="ArrowUpRight" size={15} />
+      </a>
+    </div>
+  </div>
+</div>

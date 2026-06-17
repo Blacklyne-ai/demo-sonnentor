@@ -1,0 +1,79 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import type { Job } from '../data/jobs';
+interface Props { job: Job }
+const { job } = Astro.props;
+const mailHref = `mailto:${site.email}?subject=${encodeURIComponent('Bewerbung: ' + job.title)}&body=${encodeURIComponent('Hallo Herr Forbrig,\n\nich interessiere mich für „' + job.title + '".\n\nKurz zu mir und was mich antreibt:\n\nViele Grüße')}`;
+---
+<article id={job.slug} class="card reveal scroll-mt-28 p-7 sm:p-9">
+  <div class="flex flex-wrap items-center gap-3">
+    <span class="inline-flex items-center gap-1.5 rounded-pill bg-clay-tint px-3 py-1 text-xs font-bold uppercase tracking-wide text-clay-ink">
+      <Icon name="Sparkles" size={13} />{job.tag}
+    </span>
+  </div>
+  <h3 class="mt-4 font-display text-2xl text-ink sm:text-[1.7rem]">{job.title}</h3>
+  <p class="mt-3 max-w-2xl leading-relaxed text-ink-soft">{job.summary}</p>
+
+  <div class="mt-8 grid gap-8 lg:grid-cols-2">
+    <div>
+      <h4 class="font-display text-lg text-ink">{job.aufgabenTitle}</h4>
+      <ul class="mt-3 space-y-2.5">
+        {job.aufgaben.map((a) => (
+          <li class="flex gap-3 text-[0.95rem] leading-relaxed text-ink-soft">
+            <Icon name="Check" size={18} class="mt-0.5 shrink-0 text-clay-deep" strokeWidth={2.4} />{a}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-display text-lg text-ink">Das bringst Du mit</h4>
+      <ul class="mt-3 space-y-2.5">
+        {job.muss.map((m) => (
+          <li class="flex gap-3 text-[0.95rem] leading-relaxed text-ink-soft">
+            <Icon name="Check" size={18} class="mt-0.5 shrink-0 text-clay-deep" strokeWidth={2.4} />{m}
+          </li>
+        ))}
+        {job.kann.map((k) => (
+          <li class="flex gap-3 text-[0.95rem] leading-relaxed text-muted">
+            <Icon name="Sparkles" size={16} class="mt-0.5 shrink-0 text-amber-deep" />
+            <span><span class="font-semibold text-ink-soft">Schön, aber kein Muss:</span> {k}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-7 rounded-2xl bg-sage-tint p-6">
+    <h4 class="flex items-center gap-2 font-display text-lg text-ink">
+      <Icon name="HeartHandshake" size={20} class="text-sage-ink" />Das bekommst Du
+    </h4>
+    <ul class="mt-3 grid gap-2.5 sm:grid-cols-2">
+      {job.bekommst.map((b) => (
+        <li class="flex gap-3 text-[0.95rem] leading-relaxed text-ink-soft">
+          <Icon name="Check" size={18} class="mt-0.5 shrink-0 text-sage-ink" strokeWidth={2.4} />{b}
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="mt-7 flex flex-col gap-5 border-t border-line pt-6 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <p class="text-sm font-semibold text-ink">Im persönlichen Erstgespräch klären wir:</p>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {job.offen.map((o) => (
+          <span class="rounded-pill border border-line bg-paper px-3 py-1 text-xs font-medium text-muted">{o}</span>
+        ))}
+      </div>
+      <p class="mt-3 max-w-md text-sm leading-relaxed text-muted">{job.ablauf}</p>
+    </div>
+    <div class="flex shrink-0 flex-col gap-2.5 sm:flex-row">
+      <a href={site.phone.href} class="btn btn-primary inline-flex items-center justify-center gap-2">
+        <Icon name="Phone" size={16} />Anrufen
+      </a>
+      <a href={mailHref} class="btn btn-outline inline-flex items-center justify-center gap-2">
+        <Icon name="Mail" size={16} />Bewerben
+      </a>
+    </div>
+  </div>
+</article>

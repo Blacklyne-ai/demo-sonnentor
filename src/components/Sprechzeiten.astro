@@ -1,0 +1,71 @@
+---
+import Icon from './Icon.astro';
+import LiveStatus from './LiveStatus.astro';
+import { site, sprechzeit } from '../data/site';
+// Keine festen Öffnungszeiten (verbatim) — Termine & Fragen telefonisch,
+// Mo–Fr 18:45–20:00 Uhr. Live-Status client-seitig (statischer Build kennt das
+// Betrachtungsdatum nicht). Ohne JS: Karte bleibt vollständig lesbar.
+interface Props { variant?: 'light' | 'card' }
+const { variant = 'card' } = Astro.props;
+---
+<div class:list={[variant === 'card' && 'rounded-3xl border border-line bg-white p-6 shadow-soft sm:p-7']}>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2.5 font-display text-xl text-ink">
+      <Icon name="Clock" size={20} class="text-clay-deep" />{sprechzeit.label}
+    </h3>
+    <LiveStatus />
+  </div>
+  <dl class="mt-5 space-y-2.5 text-[0.95rem]">
+    <div class="flex items-center justify-between gap-4 border-b border-line/70 pb-2.5">
+      <dt class="text-ink-soft">{sprechzeit.daysLabel}</dt>
+      <dd class="font-semibold text-ink">{sprechzeit.timeLabel}</dd>
+    </div>
+    <div class="flex items-center justify-between gap-4">
+      <dt class="text-ink-soft">Samstag & Sonntag</dt>
+      <dd class="text-muted">nach Vereinbarung</dd>
+    </div>
+  </dl>
+  <p class="mt-4 flex items-start gap-2.5 rounded-2xl bg-sand px-4 py-3 text-sm leading-relaxed text-ink-soft">
+    <Icon name="Phone" size={16} class="mt-0.5 shrink-0 text-clay-deep" />
+    Termine und Fragen besprechen wir telefonisch. {sprechzeit.hint} Ich rufe auch gern zurück.
+  </p>
+</div>
+
+<script define:vars={{ WIN: sprechzeit.window }}>
+  const DAY = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+  const fmt = (m) => Math.floor(m / 60) + ':' + String(m % 60).padStart(2, '0');
+
+  function update() {
+    const now = new Date();
+    const d = now.getDay();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    const isToday = WIN.days.includes(d);
+    let state = 'closed', text = '';
+
+    if (isToday && mins >= WIN.open && mins < WIN.close) {
+      state = WIN.close - mins <= 15 ? 'soon' : 'open';
+      text = (state === 'soon' ? 'Endet bald' : 'Jetzt erreichbar') + ' · bis ' + fmt(WIN.close) + ' Uhr';
+    } else if (isToday && mins < WIN.open) {
+      state = 'soon';
+      text = 'Heute ab ' + fmt(WIN.open) + ' Uhr erreichbar';
+    } else {
+      // nächsten Wochentag (Mo–Fr) finden
+      let label = '';
+      for (let i = 1; i <= 7; i++) {
+        const nd = (d + i) % 7;
+        if (WIN.days.includes(nd)) { label = i === 1 ? 'morgen' : DAY[nd]; break; }
+      }
+      text = 'Erreichbar ' + label + ' ab ' + fmt(WIN.open) + ' Uhr';
+    }
+
+    document.querySelectorAll('[data-live-status]').forEach((el) => {
+      el.classList.remove('is-open', 'is-soon', 'is-closed');
+      el.classList.add(state === 'open' ? 'is-open' : state === 'soon' ? 'is-soon' : 'is-closed');
+      const t = el.querySelector('.live-text');
+      if (t) t.textContent = text;
+      el.hidden = false;
+    });
+  }
+  update();
+  setInterval(update, 60000);
+</script>

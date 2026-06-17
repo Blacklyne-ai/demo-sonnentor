@@ -1,0 +1,31 @@
+---
+// Data-getriebener Lucide-Wrapper. Nur tatsächlich genutzte Icons importiert
+// (tree-shaking). Brand-/Social-Logos liegen NICHT in Lucide -> inline SVG (Social.astro).
+import {
+  HandHeart, Wind, MoonStar, Flower2, Hand, Sprout, Leaf, Sparkles, Sun, Sunrise,
+  PersonStanding, Baby, Brain, HeartHandshake, HeartPulse, Heart, Feather, Compass,
+  Footprints, Mountain, TreePine, Eye, Stethoscope, GraduationCap, CalendarCheck,
+  ShieldCheck, BadgeCheck, Quote, Star, Users, Route, Phone, Mail, MessageCircle,
+  MapPin, Clock, ArrowRight, ArrowUpRight, ArrowDown, Check, CheckCheck, ChevronRight,
+  ChevronDown, Menu, X, Play, ExternalLink, Send, NotebookPen, HandCoins, Sunrise,
+} from '@lucide/astro';
+
+const MAP: Record<string, any> = {
+  HandHeart, Wind, MoonStar, Flower2, Hand, Sprout, Leaf, Sparkles, Sun, Sunrise,
+  PersonStanding, Baby, Brain, HeartHandshake, HeartPulse, Heart, Feather, Compass,
+  Footprints, Mountain, TreePine, Eye, Stethoscope, GraduationCap, CalendarCheck,
+  ShieldCheck, BadgeCheck, Quote, Star, Users, Route, Phone, Mail, MessageCircle,
+  MapPin, Clock, ArrowRight, ArrowUpRight, ArrowDown, Check, CheckCheck, ChevronRight,
+  ChevronDown, Menu, X, Play, ExternalLink, Send, NotebookPen, HandCoins, Sunrise,
+};
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: number | string;
+  strokeWidth?: number;
+}
+const { name, class: className, size = 24, strokeWidth = 2, ...rest } = Astro.props;
+const Cmp = MAP[name] ?? Sparkles;
+---
+<Cmp class={className} size={size} stroke-width={strokeWidth} {...rest} />

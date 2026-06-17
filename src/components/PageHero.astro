@@ -1,0 +1,50 @@
+---
+import Icon from './Icon.astro';
+// Ruhiger, type-led Einstieg für Unterseiten. Optionales Hintergrundbild mit Scrim.
+interface Props {
+  title: string;
+  lead?: string;
+  eyebrow?: string;
+  image?: string;
+  breadcrumb?: { label: string; href?: string }[];
+  align?: 'left' | 'center';
+}
+const { title, lead, eyebrow, image, breadcrumb = [], align = 'left' } = Astro.props;
+const dark = !!image;
+const center = align === 'center';
+// Mobile-Variante (kleiner, leicht weichgezeichnet hinterm Scrim) für schnelles LCP
+const mobileImage = image ? image.replace(/\.webp$/, '-m.webp') : undefined;
+---
+<section class:list={['relative', dark ? 'text-white' : 'bg-sand']}>
+  {image && (
+    <div class="absolute inset-0 -z-0">
+      <picture>
+        <source media="(max-width: 819px)" srcset={mobileImage} />
+        <img src={image} alt="" aria-hidden="true" width="1500" height="1000" fetchpriority="high" decoding="async"
+          class="h-full w-full object-cover" />
+      </picture>
+      <div class="absolute inset-0" style="background:linear-gradient(180deg, rgb(36 28 24 / 0.50), rgb(36 28 24 / 0.74))"></div>
+    </div>
+  )}
+  <div class:list={['container-x relative', image ? 'pt-32 pb-16 sm:pt-40 sm:pb-20' : 'pt-32 pb-14 sm:pt-36 sm:pb-16']}>
+    <div class:list={[center && 'mx-auto max-w-3xl text-center', !center && 'max-w-3xl']}>
+      {breadcrumb.length > 0 && (
+        <nav class:list={['mb-5 flex flex-wrap items-center gap-1.5 text-sm', center && 'justify-center', dark ? 'text-white/70' : 'text-muted']} aria-label="Breadcrumb">
+          <a href="/" class="hover:underline">Start</a>
+          {breadcrumb.map((b) => (
+            <>
+              <Icon name="ChevronRight" size={14} class="opacity-60" />
+              {b.href ? <a href={b.href} class="hover:underline">{b.label}</a> : <span class:list={[dark ? 'text-white' : 'text-ink']}>{b.label}</span>}
+            </>
+          ))}
+        </nav>
+      )}
+      {eyebrow && (
+        <span class:list={['eyebrow mb-4', dark && '!text-sage-tint']}>{eyebrow}</span>
+      )}
+      <h1 class:list={['text-balance text-4xl font-medium sm:text-5xl lg:text-[3.25rem]', dark ? 'text-white' : 'text-ink']} style={dark ? 'text-shadow:0 2px 24px rgba(0,0,0,0.35)' : ''}>{title}</h1>
+      {lead && <p class:list={['mt-5 text-lg leading-relaxed text-pretty sm:text-xl', center && 'mx-auto max-w-2xl', dark ? 'text-white/85' : 'text-ink-soft']}>{lead}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

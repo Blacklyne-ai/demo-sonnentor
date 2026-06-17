@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { honorarGroups } from '../data/honorar';
+---
+<Layout title="Kosten" description="Transparente Honorare der Gesundheitspraxis SonnenTor - einzelne Behandlungen und individuelle Behandlungskomplexe, offen aufgelistet." current="/kosten">
+  <PageHero
+    eyebrow="Kosten"
+    title="Transparente Honorare, ehrlich genannt."
+    lead="Jede Begleitung ist individuell. Hier finden Sie die Honorare offen aufgelistet - die genaue Zusammenstellung besprechen wir in Ruhe im Erstgespräch."
+    breadcrumb={[{ label: 'Kosten' }]}
+  />
+
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-6 lg:grid-cols-2">
+        {honorarGroups.map((g) => (
+          <div class="reveal rounded-3xl border border-line bg-white p-7 shadow-soft sm:p-8">
+            <h2 class="flex items-center gap-2.5 font-display text-xl text-ink">
+              <Icon name="HandCoins" size={22} class="text-clay-deep" />{g.title}
+            </h2>
+            {g.note && <p class="mt-2 text-sm leading-relaxed text-muted">{g.note}</p>}
+            <dl class="mt-5 space-y-4">
+              {g.items.map((it) => (
+                <div class="flex items-baseline justify-between gap-4 border-b border-line/70 pb-4 last:border-0 last:pb-0">
+                  <dt>
+                    <span class="block text-[0.98rem] font-medium text-ink">{it.label}</span>
+                    {it.sub && <span class="mt-0.5 block text-sm leading-relaxed text-muted">{it.sub}</span>}
+                  </dt>
+                  <dd class="shrink-0 font-display text-lg text-clay-ink">{it.price}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))}
+      </div>
+
+      <p class="reveal mt-8 flex items-start gap-3 rounded-3xl bg-mist px-6 py-5 text-[0.95rem] leading-relaxed text-ink-soft">
+        <Icon name="Heart" size={19} class="mt-0.5 shrink-0 text-clay-deep" />
+        Behandlungskomplexe umfassen mehrere Sitzungen mit Therapiegespräch, abgestimmtem Behandlungskomplex
+        und einem Trainingsprogramm für zu Hause. Welche Begleitung für Sie sinnvoll ist, klären wir gemeinsam,
+        bevor Sie sich entscheiden.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

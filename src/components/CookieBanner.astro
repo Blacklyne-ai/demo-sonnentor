@@ -1,0 +1,48 @@
+---
+// DSGVO-Banner. Steuert "funktionelle" Cookies (YouTube/Maps-Embeds laden erst
+// nach Klick = cookie-sicher; Consent wird zusätzlich in localStorage gemerkt).
+import Icon from './Icon.astro';
+---
+<div id="cookie-banner" hidden
+  class="fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
+  role="dialog" aria-label="Cookie-Hinweis" aria-live="polite">
+  <div class="mx-auto max-w-3xl rounded-3xl border border-line bg-paper/95 p-5 shadow-lift backdrop-blur-xl sm:p-6">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+      <div class="flex-1">
+        <p class="flex items-center gap-2 font-display text-lg text-ink">
+          <Icon name="ShieldCheck" size={20} class="text-clay-deep" />
+          Datenschutz &amp; Cookies
+        </p>
+        <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">
+          Wir nutzen nur notwendige Cookies. Für eingebettete Videos und Karten (YouTube, Google Maps)
+          brauchen wir Ihre Zustimmung. Mehr in der <a href="/datenschutz" class="text-clay-deep underline decoration-clay/40 hover:decoration-clay">Datenschutzerklärung</a>.
+        </p>
+      </div>
+      <div class="flex shrink-0 flex-col gap-2 sm:w-auto">
+        <button type="button" data-consent="all" class="btn btn-primary inline-flex items-center justify-center">Alle akzeptieren</button>
+        <button type="button" data-consent="necessary" class="btn btn-outline inline-flex items-center justify-center">Nur notwendige</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'tp-consent';
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    function set(v) {
+      try { localStorage.setItem(KEY, v); } catch (e) {}
+      banner.hidden = true;
+      document.documentElement.dataset.consent = v;
+      window.dispatchEvent(new CustomEvent('tp-consent', { detail: v }));
+    }
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    if (stored) { document.documentElement.dataset.consent = stored; }
+    else { banner.hidden = false; }
+    banner.querySelectorAll('[data-consent]').forEach(function (b) {
+      b.addEventListener('click', function () { set(b.getAttribute('data-consent')); });
+    });
+  })();
+</script>

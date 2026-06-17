@@ -1,0 +1,29 @@
+# build output
+dist/
+# generated types
+.astro/
+# dependencies
+node_modules/
+# logs
+npm-debug.log*
+# environment
+.env
+.env.production
+# macOS
+.DS_Store
+# wrangler / cloudflare
+.wrangler/
+# scrape & QA working files kept local (raw HTML kann Tokens enthalten -> nie pushen)
+docs/raw/
+docs/assets/
+docs/sheets/
+docs/scrape/
+docs/research/
+docs/qa/
+docs/old-site.png
+docs/ref-route66.png
+docs/ref-amf.png
+docs/ref-aston.png
+
+# local editor/preview tooling (absolute paths)
+.claude/

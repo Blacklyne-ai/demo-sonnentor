@@ -1,0 +1,38 @@
+---
+import Icon from './Icon.astro';
+import { site, terminHinweis } from '../data/site';
+interface Props {
+  title?: string;
+  text?: string;
+  showHinweis?: boolean;
+}
+const {
+  title = 'Gehen wir ein Stück Ihres Weges gemeinsam.',
+  text = 'Erzählen Sie mir, was Sie bewegt. Termine und Fragen besprechen wir am liebsten persönlich am Telefon - ich nehme mir Zeit für Sie.',
+  showHinweis = true,
+} = Astro.props;
+---
+<section class="bg-dark text-white">
+  <div class="container-x py-20 lg:py-28">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <h2 class="text-balance text-3xl font-medium text-white sm:text-4xl lg:text-[2.75rem]">{title}</h2>
+      <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/75 text-pretty">{text}</p>
+
+      <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href={site.phone.href} class="btn btn-amber inline-flex items-center justify-center gap-2 text-base">
+          <Icon name="Phone" size={18} />Termin anfragen
+        </a>
+        <a href="/kontakt" class="btn btn-ghost-dark inline-flex items-center justify-center gap-2 text-base">
+          Kontakt & Anfahrt<Icon name="ArrowRight" size={18} />
+        </a>
+      </div>
+
+      {showHinweis && (
+        <p class="mx-auto mt-10 max-w-2xl rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-sm leading-relaxed text-white/65">
+          <Icon name="Clock" size={16} class="mr-1.5 -mt-0.5 inline text-amber" />
+          {terminHinweis}
+        </p>
+      )}
+    </div>
+  </div>
+</section>

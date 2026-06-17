@@ -1,0 +1,186 @@
+/* ───────────────────────────────────────────────────────────────
+   Gesundheitspraxis SonnenTor — global stylesheet
+   Selbst-gehostete Schriften (latin, font-display:optional -> kein CLS-Swap),
+   Design-Tokens in :root, eigene Regeln strikt in @layer base/components
+   (sonst überstimmen sie Tailwind-Utilities).
+
+   Palette aus Logo-Pixel-Analyse (sharp): Logo = warmes Korall-Rot #DC4A3E
+   (~79 % der Logofläche, weißes Kreuz). Daraus warmes, ruhiges Heil-Klima:
+   Ton (Rot/Clay) als Marken-Signatur · Bernstein (Sonnenaufgang, „SonnenTor")
+   als zweite Wärme · Salbei (Natur/Stechlinsee) als ruhiger Dritter ·
+   Sand/warmes Off-White als ~80 %-Fundament · warmes Espresso-Dunkel nur in
+   CtaBand/Footer/Video. Single Source of Truth: :root (RGB-Tripel).
+   ─────────────────────────────────────────────────────────────── */
+
+/* Open Sans — ruhige humanistische Sans (Body / UI) */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/fonts/open-sans-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: optional;
+  src: url('/fonts/open-sans-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: optional;
+  src: url('/fonts/open-sans-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url('/fonts/open-sans-latin-700-normal.woff2') format('woff2');
+}
+/* Fraunces — warmer, organischer Display-Serif (spirituelle Wärme; opsz+wght) */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: optional;
+  font-optical-sizing: auto;
+  src: url('/fonts/fraunces-latin-opsz-normal.woff2') format('woff2-variations');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* — warmes, ruhiges Fundament (Text in warmem Espresso, nicht kühlem Slate) — */
+  --rgb-ink: 42 35 32;        /* #2A2320  warmes Beinahe-Schwarz — Fließtext */
+  --rgb-ink-soft: 87 75 67;   /* #574B43  sekundärer Text */
+  --rgb-muted: 140 128 117;   /* #8C8075  Meta / Captions */
+  --rgb-paper: 251 248 243;   /* #FBF8F3  Basis-BG, warmes Off-White (~80 %) */
+  --rgb-sand: 244 235 221;    /* #F4EBDD  warme Sand-Sektion */
+  --rgb-mist: 234 238 230;    /* #EAEEE6  ruhige Salbei-getönte Sektion */
+  --rgb-border: 231 221 208;  /* #E7DDD0  weiche warme Linie */
+
+  /* — Clay / Rot aus dem Logo (Marken-Signatur) — */
+  --rgb-clay: 220 74 62;      /* #DC4A3E  Logo-Korall, minimal vertieft */
+  --rgb-clay-deep: 184 58 47; /* #B83A2F  Buttons / Vollton (AA weißer Text, 5.7:1) */
+  --rgb-clay-ink: 140 42 34;  /* #8C2A22  tiefes Terrakotta (Akzent-Text auf Hell, AA) */
+  --rgb-clay-tint: 250 232 228;/* #FAE8E4  blasser Rot-Wash */
+
+  /* — Bernstein / Sonnenaufgang (zweite Wärme, „SonnenTor") — */
+  --rgb-amber: 233 162 60;    /* #E9A23C  warmes Gold — nur mit dunklem Text */
+  --rgb-amber-deep: 201 130 42;/* #C9822A  Hover/Border */
+  --rgb-amber-ink: 133 83 19; /* #855313  dunkles Gold (Akzent-Text auf Hell, AA) */
+  --rgb-amber-tint: 251 240 220;/* #FBF0DC  blasser Gold-Wash */
+
+  /* — Salbei / Natur (ruhiger Dritter, Stechlinsee) — */
+  --rgb-sage: 127 154 111;    /* #7F9A6F  ruhiges Naturgrün */
+  --rgb-sage-deep: 92 122 78; /* #5C7A4E  Vollton (AA weißer Text, 4.8:1) */
+  --rgb-sage-ink: 68 87 47;   /* #44572F  tiefes Moos (Akzent-Text auf Hell, AA) */
+  --rgb-sage-tint: 235 241 229;/* #EBF1E5  blasser Grün-Wash */
+
+  /* — warmes Dunkel (CtaBand / Footer / Video) — kein kühles Anthrazit — */
+  --rgb-dark: 36 28 24;       /* #241C18  warmes Espresso */
+  --rgb-dark-deep: 22 15 12;  /* #160F0C */
+  --rgb-dark-soft: 59 46 38;  /* #3B2E26 */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem; /* fixed header offset bei Anker-Sprüngen */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 1.0625rem;          /* 17px Fließtext, ruhig & gut lesbar */
+    line-height: 1.75;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  ::selection { background: rgb(var(--rgb-amber) / 0.32); }
+  :focus-visible {
+    outline: 2px solid rgb(var(--rgb-clay));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  a { text-underline-offset: 3px; }
+}
+
+@layer components {
+  /* Inhaltsbreite — großzügig, ruhig */
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12; }
+  .container-tight { @apply mx-auto w-full max-w-3xl px-5 sm:px-8; }
+
+  /* Buttons — KEIN display hier (Memory: sonst killt es hidden/md:inline-flex).
+     Markup setzt inline-flex items-center selbst. Schlank halten (Memory). */
+  .btn {
+    @apply rounded-pill font-semibold leading-none transition-colors duration-200;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.95rem;
+  }
+  .btn-primary { @apply bg-clay-deep text-white hover:bg-clay-ink; }
+  .btn-amber   { @apply bg-amber text-ink hover:bg-amber-deep; }        /* warme Signatur — dunkler Text */
+  .btn-sage    { @apply bg-sage-deep text-white hover:bg-sage-ink; }
+  .btn-outline { @apply border border-line bg-white/70 text-ink hover:border-clay hover:text-clay-ink; }
+  .btn-on-dark { @apply bg-white text-ink hover:bg-amber-tint; }
+  .btn-ghost-dark { @apply border border-white/25 text-white hover:bg-white/10; }
+
+  /* Karten */
+  .card {
+    @apply rounded-3xl border border-line bg-white shadow-soft transition-all duration-300;
+  }
+  .card-hover:hover { @apply -translate-y-1 shadow-lift; border-color: rgb(var(--rgb-clay) / 0.4); }
+
+  /* dezente Eyebrow — sparsam einsetzen, NICHT über jede Headline.
+     Warmer Marker-Strich links als ruhige Marken-Signatur. */
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.18em] text-clay-ink;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-[2px] w-7 rounded-full bg-amber;
+  }
+  .eyebrow.no-rule::before { content: none; }
+
+  /* Lesetypografie für Langtext-Seiten */
+  .longform { @apply text-ink-soft; }
+  .longform h2 { @apply mt-12 mb-4 text-2xl text-ink; }
+  .longform h3 { @apply mt-8 mb-3 text-xl text-ink; }
+  .longform p { @apply my-4 leading-relaxed; }
+  .longform ul { @apply my-4 space-y-2 pl-5; list-style: disc; }
+  .longform a { @apply text-clay-ink underline decoration-clay/30 hover:decoration-clay; }
+  .longform strong { @apply text-ink font-semibold; }
+
+  /* Scroll-Reveal — nur aktiv wenn JS da ist (kein FOUC ohne JS) */
+  .has-js .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.65, 0.2, 1),
+                transform 0.7s cubic-bezier(0.2, 0.65, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .has-js .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .has-js .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  /* sanfte Trennlinie für dunkle Sektionen */
+  .border-soft-dark { border-color: rgb(255 255 255 / 0.12); }
+}

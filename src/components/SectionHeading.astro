@@ -1,0 +1,38 @@
+---
+import Icon from './Icon.astro';
+// Ruhige, wiederverwendbare Section-Überschrift.
+// eyebrow ist OPTIONAL und wird bewusst sparsam eingesetzt (NICHT über jeder Headline).
+interface Props {
+  eyebrow?: string;
+  eyebrowIcon?: string;
+  title: string;
+  lead?: string;
+  align?: 'left' | 'center';
+  as?: 'h2' | 'h3';
+  light?: boolean; // auf dunklem Grund
+  class?: string;
+}
+const { eyebrow, eyebrowIcon, title, lead, align = 'left', as: Tag = 'h2', light = false, class: className = '' } = Astro.props;
+const center = align === 'center';
+---
+<div class:list={[className, center && 'text-center mx-auto max-w-2xl']}>
+  {eyebrow && (
+    <span class:list={['eyebrow mb-4', light && '!text-sage-tint']}>
+      {eyebrowIcon && <Icon name={eyebrowIcon} size={15} strokeWidth={2.4} />}
+      {eyebrow}
+    </span>
+  )}
+  <Tag
+    class:list={[
+      'text-balance',
+      Tag === 'h2' ? 'text-3xl sm:text-4xl lg:text-[2.75rem]' : 'text-2xl sm:text-3xl',
+      light ? 'text-white' : 'text-ink',
+    ]}
+    set:html={title}
+  />
+  {lead && (
+    <p class:list={['mt-5 text-lg leading-relaxed text-pretty', light ? 'text-white/75' : 'text-ink-soft', center && 'mx-auto']}>
+      {lead}
+    </p>
+  )}
+</div>

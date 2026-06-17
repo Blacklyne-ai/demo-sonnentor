@@ -1,0 +1,26 @@
+---
+// Live „Jetzt geöffnet/geschlossen"-Pille. Wird vom Skript in OpeningHours.astro
+// gefüllt (Saison + Status aus aktuellem Datum, client-seitig). Ohne JS: versteckt.
+interface Props { variant?: 'light' | 'dark'; class?: string }
+const { variant = 'light', class: className = '' } = Astro.props;
+---
+<span data-live-status hidden
+  class:list={[
+    'live-status inline-flex items-center gap-2.5 rounded-pill px-3.5 py-1.5 text-sm font-semibold',
+    variant === 'dark' ? 'bg-white/10 text-white ring-1 ring-white/15 backdrop-blur' : 'bg-white text-ink shadow-soft ring-1 ring-line',
+    className,
+  ]}>
+  <span class="relative flex h-2.5 w-2.5 shrink-0">
+    <span class="live-ping absolute inline-flex h-full w-full rounded-full opacity-70 motion-safe:animate-pulse-dot"></span>
+    <span class="live-dot relative inline-flex h-2.5 w-2.5 rounded-full"></span>
+  </span>
+  <span class="live-text"></span>
+</span>
+
+<style>
+  .live-status .live-dot, .live-status .live-ping { background: #9aa6ad; }
+  .live-status.is-open .live-dot, .live-status.is-open .live-ping { background: #1FA463; }
+  .live-status.is-soon .live-dot, .live-status.is-soon .live-ping { background: #E0A100; }
+  .live-status.is-closed .live-dot, .live-status.is-closed .live-ping { background: #9aa6ad; }
+  .live-status.is-closed .live-ping { animation: none; opacity: 0; }
+</style>

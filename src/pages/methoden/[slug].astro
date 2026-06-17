@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { methods } from '../../data/methods';
+
+export function getStaticPaths() {
+  return methods.map((m) => ({ params: { slug: m.slug }, props: { method: m } }));
+}
+const { method } = Astro.props;
+const others = methods.filter((m) => m.slug !== method.slug);
+---
+<Layout title={method.name} description={method.short} current="/methoden">
+  <PageHero
+    eyebrow={method.kicker}
+    title={method.name}
+    lead={method.lead}
+    image={method.image}
+    breadcrumb={[{ label: 'Methoden', href: '/methoden' }, { label: method.name }]}
+  />
+
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
+        <div class="reveal max-w-2xl">
+          {method.body.map((p) => (
+            <p class="mt-5 text-lg leading-relaxed text-ink-soft first:mt-0">{p}</p>
+          ))}
+          <a href="/kontakt" class="mt-8 inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
+            Termin anfragen<Icon name="ArrowRight" size={17} />
+          </a>
+        </div>
+
+        {method.highlights && (
+          <aside class="reveal">
+            <div class="rounded-3xl border border-line bg-sand p-7">
+              <h2 class="flex items-center gap-2.5 font-display text-xl text-ink">
+                <Icon name={method.icon} size={22} class="text-clay-deep" strokeWidth={1.8} />Im Überblick
+              </h2>
+              <ul class="mt-5 space-y-3">
+                {method.highlights.map((h) => (
+                  <li class="flex items-start gap-3 text-[0.95rem] leading-relaxed text-ink-soft">
+                    <Icon name="Check" size={18} class="mt-0.5 shrink-0 text-clay-deep" strokeWidth={2.4} />{h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Weitere Methoden -->
+  <section class="bg-mist">
+    <div class="container-x py-16 lg:py-20">
+      <h2 class="reveal font-display text-2xl text-ink sm:text-3xl">Weitere Methoden</h2>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {others.map((m) => (
+          <a href={`/methoden/${m.slug}`} class="card card-hover group reveal flex flex-col gap-3 p-5">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep transition-colors group-hover:bg-clay-deep group-hover:text-white">
+              <Icon name={m.icon} size={20} strokeWidth={1.8} />
+            </span>
+            <span class="font-display text-[1.05rem] leading-tight text-ink">{m.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

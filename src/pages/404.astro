@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { primaryNav } from '../data/site';
+---
+<Layout title="Seite nicht gefunden" noindex={true} description="Diese Seite konnte nicht gefunden werden.">
+  <section class="bg-paper">
+    <div class="container-x flex min-h-[70vh] flex-col items-center justify-center py-28 text-center">
+      <span class="font-display text-6xl text-clay-deep sm:text-7xl">404</span>
+      <h1 class="mt-4 text-balance text-3xl text-ink sm:text-4xl">Diese Seite habe ich leider nicht gefunden.</h1>
+      <p class="mt-4 max-w-md text-lg text-ink-soft">Vielleicht hilft einer dieser Wege weiter - oder rufen Sie mich einfach an.</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-2.5">
+        {primaryNav.map((item) => (
+          <a href={item.href} class="rounded-pill border border-line bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-clay hover:text-clay-deep">{item.label}</a>
+        ))}
+      </div>
+      <a href="/" class="mt-8 btn btn-primary inline-flex items-center gap-2">
+        <Icon name="ArrowRight" size={17} class="rotate-180" />Zur Startseite
+      </a>
+    </div>
+  </section>
+</Layout>

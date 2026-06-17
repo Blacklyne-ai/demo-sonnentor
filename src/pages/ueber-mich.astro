@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, disclaimer } from '../data/site';
+
+const qualifikationen = [
+  'Geistheilungs-Therapeut und Lehrer',
+  'Reiki-Großmeister und Lehrer (Usui, Grad 1-7)',
+  'Reiki-Meister und Lehrer (KARUNA, Grad 1-3)',
+  'Meditationstrainer und Lehrer',
+  'Hypno-Therapeut',
+  'Bewusstseins-Forscher',
+  'Gesundheits-Coach',
+];
+const prinzip = [
+  'Auflösen von Fremdenergien und Krankheitsinformationen aus der Ahnenreihe',
+  'Heilung von Seele, Geist und Körper durch universelle Heil-Energien',
+  'Chakrenausgleich und Reinigung aller Energiebahnen',
+  'Bewusstseinserweiterung und -anhebung',
+];
+const ablauf = [
+  { icon: 'NotebookPen', title: 'Ausführliches Therapiegespräch', text: 'Wir nehmen uns Zeit, an die eigentlichen Ursachen heranzukommen.' },
+  { icon: 'HandHeart', title: 'Angepasster Behandlungskomplex', text: 'Eine Begleitung, die genau auf Sie und Ihr Anliegen zugeschnitten ist.' },
+  { icon: 'Sprout', title: 'Trainingsprogramm für Geist & Körper', text: 'Übungen für zu Hause, die das Erreichte im Alltag tragen.' },
+];
+---
+<Layout title="Über mich" description="Dr. Fabian Siegfried Forbrig - Heiler für Mensch und Tier in Neuglobsow am Stechlinsee. Geistiges Heilen seit 2007." current="/ueber-mich">
+  <PageHero
+    eyebrow="Über mich"
+    title="Ein Stück Ihres Weges - gehen wir es gemeinsam."
+    lead="Mein Name ist Dr. Fabian Siegfried Forbrig. Als Heiler für Mensch und Tier begleite ich Menschen in Neuglobsow am Stechlinsee - seit 2007."
+    image="/images/candle-still.jpg"
+    breadcrumb={[{ label: 'Über mich' }]}
+  />
+
+  <!-- Haltung / Prinzip -->
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal max-w-xl">
+          <span class="eyebrow mb-4">Meine Haltung</span>
+          <h2 class="text-balance text-3xl text-ink sm:text-4xl">An die Wurzeln gehen, nicht nur an die Symptome.</h2>
+          <div class="mt-5 space-y-4 leading-relaxed text-ink-soft">
+            <p>
+              Krankheiten sind für mich Disharmonien in unserem Körper, die alle ihre Ursachen haben - oft in
+              unverarbeiteten Erlebnissen, Sorgen- und Angstmustern, die wir unbewusst mit uns tragen.
+            </p>
+            <p>
+              Um diese Ursachen zu bearbeiten, ist es notwendig, an die Wurzeln zu gehen. Nur die Symptome zu
+              behandeln, wie es in der modernen Medizin üblich ist, genügt bei weitem nicht. Die Auflösung der
+              Ursachen bildet die Basis meiner Behandlungen.
+            </p>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="overflow-hidden rounded-3xl shadow-lift">
+            <img src="/images/hands-back-gentle.jpg" alt="Sanfte Hände bei einer energetischen Behandlung"
+              width="1000" height="750" loading="lazy" decoding="async" class="h-64 w-full object-cover sm:h-80" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Geistiges Heilen / Ich-Stimme -->
+  <section class="bg-sand">
+    <div class="container-x py-16 lg:py-24">
+      <div class="mx-auto max-w-3xl">
+        <blockquote class="reveal text-balance font-display text-2xl leading-snug text-ink sm:text-[1.75rem] lg:leading-[1.35]">
+          „Ich bin sehr dankbar, als Bindeglied zwischen Schöpfung und Heilung Suchenden universelle
+          Heilkräfte anwenden zu dürfen."
+        </blockquote>
+        <div class="reveal mt-7 space-y-4 leading-relaxed text-ink-soft">
+          <p>
+            Diese Kräfte lasse ich in Körper und Geist des Menschen fließen - geistig und durch Handauflegen.
+            Die Seele erfährt Reinigung, die Wahrnehmung des Geistes wird wieder klar. Chakrenausgleich, die
+            Reinigung aller Energiebahnen, die Öffnung des Herzens und die körperliche wie seelische Aufrichtung
+            sind ebenfalls Teil der Behandlung.
+          </p>
+          <p>
+            Öffnet sich ein Mensch, lässt einfach zu und nimmt vertrauensvoll und dankbar an, geschieht die Heilung.
+          </p>
+        </div>
+
+        <div class="reveal mt-10 grid gap-4 sm:grid-cols-2">
+          {prinzip.map((p) => (
+            <div class="flex items-start gap-3 rounded-2xl border border-line bg-white px-5 py-4 shadow-soft">
+              <Icon name="Sparkles" size={18} class="mt-0.5 shrink-0 text-amber-deep" />
+              <span class="text-[0.95rem] leading-relaxed text-ink-soft">{p}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ablauf -->
+  <section class="bg-paper">
+    <div class="container-x py-16 lg:py-24">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <span class="eyebrow no-rule mb-4 justify-center">So begleite ich Sie</span>
+        <h2 class="text-balance text-3xl text-ink sm:text-4xl">Jede Begleitung ist persönlich.</h2>
+      </div>
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        {ablauf.map((a) => (
+          <div class="reveal rounded-3xl border border-line bg-white p-7 shadow-soft">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep">
+              <Icon name={a.icon} size={22} strokeWidth={1.8} />
+            </span>
+            <h3 class="mt-5 font-display text-xl text-ink">{a.title}</h3>
+            <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{a.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Qualifikationen + Disclaimer -->
+  <section class="bg-mist">
+    <div class="container-x py-16 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+        <div class="reveal">
+          <span class="eyebrow mb-4">Ausbildung & Qualifikation</span>
+          <h2 class="text-balance text-3xl text-ink sm:text-4xl">Wofür ich stehe.</h2>
+          <p class="mt-4 leading-relaxed text-ink-soft">
+            Über viele Jahre habe ich gelernt, gelehrt und geforscht. Ich bin auch als „Pferdeflüsterer"
+            und „Hundeheiler" bekannt.
+          </p>
+          <ul class="mt-6 grid gap-3">
+            {qualifikationen.map((q) => (
+              <li class="flex items-start gap-3 text-[0.95rem] text-ink-soft">
+                <Icon name="BadgeCheck" size={19} class="mt-0.5 shrink-0 text-clay-deep" strokeWidth={2} />{q}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="reveal flex flex-col gap-5">
+          <div class="rounded-3xl border border-line bg-white p-7 shadow-soft">
+            <h3 class="flex items-center gap-2.5 font-display text-xl text-ink">
+              <Icon name="ShieldCheck" size={22} class="text-clay-deep" />Mein Versprechen an Sie
+            </h3>
+            <p class="mt-4 leading-relaxed text-ink-soft">{disclaimer.full}</p>
+          </div>
+          <div class="rounded-3xl bg-dark p-7 text-white">
+            <p class="font-display text-xl leading-relaxed text-white">
+              „Als Heiler lade ich Sie herzlich ein, gemeinsam mit mir ein Stück Ihres Weges zu gehen - und freue
+              mich, Sie kennenzulernen und Ihnen helfen zu dürfen."
+            </p>
+            <a href={site.phone.href} class="btn btn-amber mt-6 inline-flex items-center gap-2">
+              <Icon name="Phone" size={17} />Termin anfragen
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

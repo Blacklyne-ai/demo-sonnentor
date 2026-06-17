@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site, disclaimer } from '../data/site';
+---
+<Layout title="Impressum" current="" noindex={true} description="Impressum der Gesundheitspraxis SonnenTor, Dr. Fabian Siegfried Forbrig, Bahnhofsweg 6 B, 16775 Neuglobsow / Stechlin.">
+  <PageHero title="Impressum" breadcrumb={[{ label: 'Impressum' }]} />
+  <section class="bg-paper">
+    <div class="container-tight py-16 lg:py-20">
+      <div class="longform">
+        <h2>Angaben gemäß § 5 DDG</h2>
+        <p>
+          <strong>Gesundheitspraxis SonnenTor</strong><br />
+          {site.kicker}<br />
+          {site.address.street}<br />
+          {site.address.zip} {site.address.city} / {site.address.district}
+        </p>
+        <p>
+          <strong>Inhaber &amp; verantwortlicher Heiler:</strong> {site.founder}<br />
+          {site.founderRole}
+        </p>
+        <p>
+          Telefon: {site.landline.display}<br />
+          Mobil: {site.phone.display}<br />
+          E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+
+        <h2>Steuer</h2>
+        <p>Steuernummer: {site.impressum.taxNumber}</p>
+
+        <h2>Tätigkeit &amp; Qualifikation</h2>
+        <p>
+          Geistiges Heilen und alternative Heilmethoden. Qualifikationen: Geistheilungs-Therapeut und Lehrer,
+          Reiki-Großmeister und Lehrer (Usui), Reiki-Meister und Lehrer (KARUNA), Meditationstrainer und Lehrer,
+          Hypno-Therapeut, Bewusstseins-Forscher, Gesundheits-Coach.
+        </p>
+
+        <h2>Wichtiger Hinweis</h2>
+        <p>{disclaimer.full}</p>
+
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p>Verantwortlich gem. § 18 Abs. 2 MStV: {site.founder}, Anschrift wie oben.</p>
+
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+
+        <h2>Haftung für Inhalte</h2>
+        <p>
+          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den
+          allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht
+          verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Verpflichtungen zur
+          Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon
+          unberührt.
+        </p>
+
+        <h2>Haftung für Links</h2>
+        <p>
+          Unser Angebot enthält ggf. Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss
+          haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
+          verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+        </p>
+
+        <h2>Urheberrecht</h2>
+        <p>
+          Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
+          Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Eine Vervielfältigung oder Verwendung
+          bedarf der vorherigen schriftlichen Zustimmung.
+        </p>
+
+        <h2>Bildnachweis</h2>
+        <p>
+          Logo: Gesundheitspraxis SonnenTor. Stimmungs- und Naturfotos: Pexels (lizenzfrei). Eine vollständige
+          Bildnachweis-Liste liegt der Praxis vor.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
