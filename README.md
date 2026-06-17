@@ -73,7 +73,10 @@ docs/
 
 ## Qualität
 
-- font-display:optional + LCP-Hero, inlined CSS, Embeds erst nach Klick (0 Third-Party
-  beim Laden), keine Render-Blocker
+- **Lighthouse (mobil, lokal gemessen): Performance 95 · Accessibility 100 ·
+  Best Practices 100 · SEO 100** - CLS 0, TBT 0 ms, LCP ~2,6 s (responsive WebP-Hero
+  900/1600 px + Preload; auf dem CDN nochmals schneller)
+- font-display:optional, inlined CSS, Embeds erst nach Klick (0 Third-Party beim Laden),
+  keine Render-Blocker
 - Umlaute korrekt, keine Emojis (Lucide), DSGVO-Banner
 - Inhalte verbatim aus der Original-Seite - nichts erfunden (siehe JUDGEMENT_CALLS.md)

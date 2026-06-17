@@ -18,11 +18,19 @@ import { werte, ausbildungen } from '../data/jobs';
 const podcast = videos.find((v) => v.kind === 'Podcast');
 ---
 <Layout floating={true} current="/">
+  <!-- LCP-Hero vorab laden (passend zum <picture> je Viewport) -->
+  <link slot="head" rel="preload" as="image" type="image/webp" href="/images/hero-lake-900.webp" media="(max-width: 700px)" />
+  <link slot="head" rel="preload" as="image" type="image/webp" href="/images/hero-lake.webp" media="(min-width: 701px)" />
+
   <!-- ───────────────────────── Hero ───────────────────────── -->
   <section class="relative isolate flex min-h-[92svh] items-end overflow-hidden">
     <div class="absolute inset-0 -z-10">
-      <img src="/images/hero-lake.jpg" alt="" aria-hidden="true" width="1600" height="1100"
-        fetchpriority="high" decoding="async" class="h-full w-full object-cover object-center" />
+      <picture>
+        <source type="image/webp" media="(max-width: 700px)" srcset="/images/hero-lake-900.webp" />
+        <source type="image/webp" srcset="/images/hero-lake.webp" />
+        <img src="/images/hero-lake.jpg" alt="" aria-hidden="true" width="1600" height="1100"
+          fetchpriority="high" decoding="async" class="h-full w-full object-cover object-center" />
+      </picture>
       <div class="absolute inset-0" style="background:linear-gradient(178deg, rgb(22 15 12 / 0.46) 0%, rgb(22 15 12 / 0.18) 34%, rgb(22 15 12 / 0.40) 64%, rgb(22 15 12 / 0.82) 100%)"></div>
     </div>
 
