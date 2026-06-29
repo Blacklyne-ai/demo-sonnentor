@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { site, footerNav, disclaimer } from '../data/site';
+import { site, footerNav } from '../data/site';
 const year = 2026;
 ---
 <footer class="border-t border-white/5 bg-dark-deep text-white/70">
@@ -50,13 +50,7 @@ const year = 2026;
       ))}
     </div>
 
-    <!-- Vertrauenssatz statt Marktschrei -->
-    <p class="mt-14 flex items-start gap-2.5 border-t border-white/10 pt-7 text-sm leading-relaxed text-white/55">
-      <Icon name="Heart" size={16} class="mt-0.5 shrink-0 text-amber" />
-      {disclaimer.noPromise} Meine Methoden aktivieren die Selbstheilungskräfte und ersetzen nicht die Tätigkeit eines Arztes oder Psychologen.
-    </p>
-
-    <div class="mt-7 flex flex-col gap-3 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mt-14 flex flex-col gap-3 border-t border-white/10 pt-7 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
       <p>© {site.since}-{year} {site.name}</p>
       <p class="flex flex-wrap items-center gap-x-5 gap-y-1">
         <a href="/impressum" class="transition-colors hover:text-white">Impressum</a>

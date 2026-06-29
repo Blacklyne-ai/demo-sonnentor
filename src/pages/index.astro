@@ -11,7 +11,7 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
 import Social from '../components/Social.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, disclaimer, videos, introVideo } from '../data/site';
+import { site, videos, introVideo } from '../data/site';
 import { methods } from '../data/methods';
 import { treatments, wochenprogramm } from '../data/treatments';
 const weitere = treatments.filter((t) => t.slug !== 'begleitende-behandlung');
@@ -107,11 +107,7 @@ const weitere = treatments.filter((t) => t.slug !== 'begleitende-behandlung');
               Arbeit ganz persönlich vor.
             </p>
           </div>
-          <p class="mt-6 flex items-start gap-3 rounded-2xl border border-line bg-sand px-5 py-4 text-[0.95rem] leading-relaxed text-ink-soft">
-            <Icon name="ShieldCheck" size={20} class="mt-0.5 shrink-0 text-clay-deep" />
-            <span><strong class="font-semibold text-ink">{disclaimer.noPromise}</strong> Meine Methoden stärken die Selbstheilungskräfte und ersetzen nicht die Tätigkeit eines Arztes.</span>
-          </p>
-          <a href="/ueber-mich" class="mt-7 inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
+          <a href="/ueber-mich" class="mt-8 inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
             Mehr über meinen Weg<Icon name="ArrowRight" size={17} />
           </a>
         </div>
