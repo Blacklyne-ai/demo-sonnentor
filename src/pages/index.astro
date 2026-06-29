@@ -11,7 +11,7 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 import GoogleReviews from '../components/GoogleReviews.astro';
 import Social from '../components/Social.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, disclaimer, videos } from '../data/site';
+import { site, disclaimer, videos, introVideo } from '../data/site';
 import { methods } from '../data/methods';
 import { treatments, wochenprogramm } from '../data/treatments';
 const weitere = treatments.filter((t) => t.slug !== 'begleitende-behandlung');
@@ -87,35 +87,24 @@ const weitere = treatments.filter((t) => t.slug !== 'begleitende-behandlung');
     </div>
   </section>
 
-  <!-- ─────────────────── Der Heiler / persönlicher Anker ─────────────────── -->
-  <section class="bg-paper">
+  <!-- ─────────────────── Die Praxis stellt sich vor (Video) ─────────────────── -->
+  <section id="praxis" class="bg-paper">
     <div class="container-x py-20 lg:py-28">
       <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div class="reveal relative order-2 lg:order-1">
-          <div class="relative overflow-hidden rounded-3xl shadow-lift lg:min-h-[30rem]">
-            <img src="/images/hands-hold.jpg" alt="Zwei Hände, die einander halten, im warmen Licht"
-              width="1000" height="750" loading="lazy" decoding="async"
-              class="h-full w-full object-cover lg:absolute lg:inset-0" />
-          </div>
-          <div class="absolute -bottom-5 -right-3 hidden max-w-[15rem] rounded-2xl border border-line bg-paper/95 p-5 shadow-lift backdrop-blur sm:block lg:right-6">
-            <p class="font-display text-lg text-ink">Dr. Fabian Forbrig</p>
-            <p class="mt-0.5 text-sm text-muted">Heiler für Mensch und Tier</p>
-          </div>
-        </div>
-
-        <div class="order-1 lg:order-2">
-          <span class="eyebrow mb-4">Über mich</span>
+        <div>
+          <span class="eyebrow mb-4">Die Praxis stellt sich vor</span>
           <h2 class="text-balance text-3xl text-ink sm:text-4xl lg:text-[2.6rem]">
-            Niemand sollte diesen Weg allein gehen.
+            Lernen Sie mich und meine Praxis kennen.
           </h2>
           <div class="mt-5 space-y-4 leading-relaxed text-ink-soft">
             <p>
-              Als Heiler lasse ich universelle Heilkräfte in Körper und Geist fließen - geistig und durch
-              Handauflegen. Mir geht es darum, Kraft zu geben, zu beruhigen und die Selbstheilungskräfte zu stärken.
+              Mein Name ist Dr. Fabian Forbrig. In meiner Praxis in Neuglobsow am Stechlinsee begleite ich
+              Menschen mit Krebs und schweren Erkrankungen - mit Zeit, Wärme und Ruhe, ergänzend zu ihrer
+              ärztlichen Behandlung.
             </p>
             <p>
-              Gerade Menschen mit einer schweren Diagnose begleite ich mit ganzem Herzen - mit Zeit, Wärme und Ruhe,
-              ergänzend zu ihrer ärztlichen Behandlung.
+              Wer zu mir kommt, bleibt eine Woche und schöpft neue Kraft. Im Video stelle ich mich und meine
+              Arbeit ganz persönlich vor.
             </p>
           </div>
           <p class="mt-6 flex items-start gap-3 rounded-2xl border border-line bg-sand px-5 py-4 text-[0.95rem] leading-relaxed text-ink-soft">
@@ -125,6 +114,13 @@ const weitere = treatments.filter((t) => t.slug !== 'begleitende-behandlung');
           <a href="/ueber-mich" class="mt-7 inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
             Mehr über meinen Weg<Icon name="ArrowRight" size={17} />
           </a>
+        </div>
+
+        <div class="reveal">
+          <VideoEmbed id={introVideo.id} title={introVideo.title} />
+          <p class="mt-3 flex items-center gap-2 text-sm text-muted">
+            <Icon name="Sun" size={15} class="text-amber-deep" />Dr. Fabian Forbrig - Heiler für Mensch und Tier
+          </p>
         </div>
       </div>
     </div>

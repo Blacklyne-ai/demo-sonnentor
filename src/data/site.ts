@@ -88,8 +88,11 @@ export const disclaimer = {
 // Praxis; 2-3: Features von „Welt im Wandel.TV"; 4: Podcast von „Gesundheit für
 // Empathen". Reißerische Original-Titel („Wunder der Heilung / Krebs", „Nichts ist
 // unheilbar") bewusst NICHT als Überschrift übernommen.
+// Vorstellungs-Video - eigene Sektion „Die Praxis stellt sich vor" (Startseite, oben).
+export const introVideo = { id: 'Ewuu-LszUM4', title: 'Die Praxis stellt sich vor' } as const;
+
+// Videos für die „Einblicke"-Reihe (ohne das Vorstellungs-Video).
 export const videos = [
-  { id: 'Ewuu-LszUM4', title: 'Die Praxis stellt sich vor', kind: 'Video' },
   { id: 'spznxzhWLjU', title: 'Einblicke in meine Arbeit', kind: 'Video' },
   { id: '0DyJ6HPcJuI', title: 'Erfahrungen & Geschichten', kind: 'Video' },
   { id: 'tqcq9mVs5sg', title: 'Podcast: Im Gespräch mit Fabian Forbrig', kind: 'Podcast' },
