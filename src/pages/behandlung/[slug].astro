@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Icon from '../../components/Icon.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { treatments } from '../../data/treatments';
+import { treatments, wochenprogramm } from '../../data/treatments';
 import { disclaimer } from '../../data/site';
 
 export function getStaticPaths() {
@@ -77,6 +77,30 @@ const others = treatments.filter((t) => t.slug !== treatment.slug);
       </div>
     </div>
   </section>
+
+  {treatment.slug === 'begleitende-behandlung' && (
+    <section class="bg-sand">
+      <div class="container-x py-16 lg:py-24">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <span class="eyebrow no-rule mb-4 justify-center">{wochenprogramm.kicker}</span>
+          <h2 class="text-balance text-3xl text-ink sm:text-4xl">{wochenprogramm.title}</h2>
+          <p class="mt-4 leading-relaxed text-ink-soft">{wochenprogramm.intro}</p>
+        </div>
+        <div class="mt-12 grid gap-5 md:grid-cols-3">
+          {wochenprogramm.steps.map((s) => (
+            <div class="reveal rounded-3xl border border-line bg-white p-7 shadow-soft">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-clay-deep font-display text-lg text-white">{s.n}</span>
+              <h3 class="mt-5 font-display text-lg text-ink">{s.title}</h3>
+              <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{s.text}</p>
+            </div>
+          ))}
+        </div>
+        <p class="reveal mx-auto mt-8 max-w-2xl text-center text-[0.95rem] leading-relaxed text-ink-soft">
+          {wochenprogramm.priceLabel}: <strong class="text-clay-ink">{wochenprogramm.price}</strong> - {wochenprogramm.priceNote}
+        </p>
+      </div>
+    </section>
+  )}
 
   <section class="bg-mist">
     <div class="container-x py-16 lg:py-20">

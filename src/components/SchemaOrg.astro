@@ -8,7 +8,7 @@ const schema = {
   name: site.name,
   alternateName: site.kicker,
   description:
-    'Praxis für Alternative Heilmethoden in Neuglobsow am Stechlinsee. Geistiges Heilen, Clearing, Hypnose, Meditation, Energiemassagen und Qi Gong - sowie begleitende Behandlung bei Rücken-, Kinder- und psychischen Themen. Seit 2007.',
+    'Praxis für Alternative Heilmethoden in Neuglobsow am Stechlinsee. Begleitende Behandlung bei Krebs und schweren Erkrankungen - eine Woche in der Praxis, drei Behandlungen. Geistiges Heilen, Energiemassagen und Qi Gong. Seit 2007.',
   url: site.url,
   telephone: site.phone.intl,
   email: site.email,
@@ -24,7 +24,7 @@ const schema = {
     addressCountry: 'DE',
   },
   areaServed: ['Neuglobsow', 'Stechlin', 'Brandenburg', 'Berlin'],
-  knowsAbout: ['Geistiges Heilen', 'Geistheilung', 'Reiki', 'Clearing', 'Hypnose', 'Meditation', 'Energiemassage', 'Qi Gong', 'Skoliose', 'Rückenschmerzen', 'Kinderheilung'],
+  knowsAbout: ['Begleitung bei Krebs', 'Geistiges Heilen', 'Geistheilung', 'Reiki', 'Energiemassage', 'Qi Gong', 'Clearing', 'Skoliose', 'Rückenschmerzen', 'Kinderheilung'],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Terminvereinbarung',
@@ -36,7 +36,6 @@ const schema = {
       closes: '20:00',
     },
   },
-  sameAs: [site.youtube],
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />

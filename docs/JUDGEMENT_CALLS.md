@@ -4,6 +4,15 @@ Entscheidungen, die ich (Blacklyne) beim Redesign getroffen habe, plus offene Pu
 die der Inhaber (Dr. Fabian Siegfried Forbrig) bestätigen / liefern sollte. Nichts wurde
 erfunden; wo Substanz fehlte, steht hier ein TODO statt einer Erfindung.
 
+> **Update – Krebs-Fokus (auf Kundenwunsch):** Die Seite wurde komplett auf die
+> **Begleitung bei Krebs** ausgerichtet. Signatur-Angebot: eine Woche in der Praxis,
+> **drei Behandlungen, 1.800-3.000 €**. **Meditation, Hypnose und Weiterbildung/
+> Ausbildung werden nicht mehr angeboten** und sind entfernt (inkl. Karriere-/Employer-
+> Branding-Seite, Punkt 7 unten ist damit erledigt). Optik wärmer & lebensbejahender
+> (neue goldene Stimmungsbilder). Rücken/Kinder/Psyche bleiben als sekundäre Begleitung.
+> Offen: Falls er bei Krebs einen festen Wochen-Ablauf/feste Behandlungen hat, gern
+> präzisieren; sonst ist es bewusst ruhig/allgemein gehalten.
+
 ---
 
 ## A. Rechtlich / HWG (am wichtigsten)

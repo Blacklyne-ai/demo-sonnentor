@@ -4,19 +4,19 @@ import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { methods, angebote } from '../data/methods';
+import { methods, indications } from '../data/methods';
 ---
-<Layout title="Heilmethoden" description="Geistiges Heilen, Clearing, Hypnose, Meditation, Energiemassagen und Qi Gong - die Methoden der Gesundheitspraxis SonnenTor, sowie alle Anwendungen im Überblick." current="/methoden">
+<Layout title="Methoden" description="Geistiges Heilen, Energiemassagen, Qi Gong und Clearing - die Methoden, mit denen ich Menschen begleite. Gesundheitspraxis SonnenTor am Stechlinsee." current="/methoden">
   <PageHero
     eyebrow="Methoden"
-    title="Die Wege, auf denen ich arbeite."
-    lead="Sechs Methoden, die ich je nach Mensch und Anliegen miteinander verbinde - ruhig, achtsam und immer im Gespräch abgestimmt."
+    title="Womit ich Sie begleite."
+    lead="Es geht um den Menschen - um Kraft, Ruhe und die Stärkung der Selbstheilung. Diese Methoden verbinde ich je nach Mensch und Anliegen."
     breadcrumb={[{ label: 'Methoden' }]}
   />
 
   <section class="bg-paper">
     <div class="container-x py-16 lg:py-24">
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-5 sm:grid-cols-2">
         {methods.map((m) => (
           <ServiceCard href={`/methoden/${m.slug}`} icon={m.icon} title={m.name} blurb={m.short} image={m.image} cta="Mehr erfahren" />
         ))}
@@ -24,38 +24,27 @@ import { methods, angebote } from '../data/methods';
     </div>
   </section>
 
-  <!-- Vollständiges Leistungsverzeichnis (verbatim alte Site) -->
   <section class="bg-sand">
     <div class="container-x py-16 lg:py-24">
-      <div class="reveal mx-auto max-w-2xl text-center">
-        <span class="eyebrow no-rule mb-4 justify-center">Alles auf einen Blick</span>
-        <h2 class="text-balance text-3xl text-ink sm:text-4xl">Anwendungen &amp; Angebote im Überblick.</h2>
-        <p class="mt-4 leading-relaxed text-ink-soft">
-          Die meisten Disharmonien unseres Körpers gehen auf Immunschwächen zurück. Deshalb arbeite ich
-          an den Ursachen - und begleite bei vielen unterschiedlichen Themen.
-          <span class="mt-2 block font-display text-lg text-clay-ink">„Ein Versuch ist es immer wert."</span>
-        </p>
-      </div>
-
-      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {angebote.map((a) => (
-          <div class="reveal flex flex-col rounded-3xl border border-line bg-white p-6 shadow-soft">
-            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep">
-              <Icon name={a.icon} size={21} strokeWidth={1.8} />
-            </span>
-            <h3 class="mt-4 font-display text-lg text-ink">{a.title}</h3>
-            <ul class="mt-4 flex-1 space-y-2 text-[0.92rem] leading-relaxed text-ink-soft">
-              {a.items.map((it) => (
-                <li class="flex items-start gap-2.5">
-                  <Icon name="Check" size={15} class="mt-1 shrink-0 text-clay-deep" strokeWidth={2.4} />{it}
-                </li>
-              ))}
-            </ul>
-            <a href={`/methoden/${a.method}`} class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-clay-deep hover:text-clay-ink">
-              {a.methodName}<Icon name="ArrowRight" size={15} />
-            </a>
-          </div>
-        ))}
+      <div class="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+        <div class="reveal">
+          <span class="eyebrow mb-4">Wobei geistiges Heilen begleitet</span>
+          <h2 class="text-balance text-3xl text-ink sm:text-4xl">Kraft, wo sie gebraucht wird.</h2>
+          <p class="mt-5 leading-relaxed text-ink-soft">
+            Gerade in einer schweren Zeit braucht der Mensch Kraft, Ruhe und Zuversicht. Das geistige Heilen
+            unterstützt das Wohlbefinden - begleitend zur ärztlichen Behandlung.
+          </p>
+          <p class="mt-4 font-display text-xl text-clay-ink">„Ein Versuch ist es immer wert."</p>
+        </div>
+        <div class="reveal">
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {indications.map((i) => (
+              <li class="flex items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 text-[0.95rem] text-ink-soft shadow-soft">
+                <Icon name="Check" size={17} class="shrink-0 text-clay-deep" strokeWidth={2.4} />{i}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </section>

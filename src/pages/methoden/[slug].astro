@@ -3,14 +3,13 @@ import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
 import Icon from '../../components/Icon.astro';
 import CtaBand from '../../components/CtaBand.astro';
-import { methods, angebote } from '../../data/methods';
+import { methods } from '../../data/methods';
 
 export function getStaticPaths() {
   return methods.map((m) => ({ params: { slug: m.slug }, props: { method: m } }));
 }
 const { method } = Astro.props;
 const others = methods.filter((m) => m.slug !== method.slug);
-const angebot = angebote.find((a) => a.method === method.slug);
 ---
 <Layout title={method.name} description={method.short} current="/methoden">
   <PageHero
@@ -52,26 +51,6 @@ const angebot = angebote.find((a) => a.method === method.slug);
       </div>
     </div>
   </section>
-
-  <!-- Vollständige Anwendungs-/Indikationsliste (verbatim alte Site) -->
-  {angebot && (
-    <section class="bg-sand">
-      <div class="container-x py-16 lg:py-20">
-        <div class="reveal max-w-2xl">
-          <span class="eyebrow mb-4">{angebot.title}</span>
-          <h2 class="text-balance text-3xl text-ink sm:text-4xl">Womit ich konkret arbeite.</h2>
-          <p class="mt-4 leading-relaxed text-ink-soft">{angebot.intro}</p>
-        </div>
-        <ul class="reveal mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {angebot.items.map((it) => (
-            <li class="flex items-center gap-3 rounded-2xl border border-line bg-white px-4 py-3 text-[0.95rem] text-ink-soft shadow-soft">
-              <Icon name="Check" size={17} class="shrink-0 text-clay-deep" strokeWidth={2.4} />{it}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )}
 
   <!-- Weitere Methoden -->
   <section class="bg-mist">

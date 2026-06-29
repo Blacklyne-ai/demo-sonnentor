@@ -95,35 +95,32 @@ export const videos = [
   { id: 'tqcq9mVs5sg', title: 'Podcast: Im Gespräch mit Fabian Forbrig', kind: 'Podcast' },
 ] as const;
 
-// Schlanke Hauptnavigation (Patienten + Karriere klar getrennt).
+// Schlanke Hauptnavigation - Fokus auf Begleitung (Krebs).
 export const primaryNav = [
-  { label: 'Behandlung', href: '/behandlung' },
+  { label: 'Begleitung', href: '/behandlung' },
   { label: 'Methoden', href: '/methoden' },
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Erfahrungsberichte', href: '/erfahrungsberichte' },
-  { label: 'Karriere', href: '/ausbildung-karriere' },
   { label: 'Kosten', href: '/kosten' },
 ] as const;
 
 export const footerNav = [
   {
-    title: 'Behandlung',
+    title: 'Begleitung',
     links: [
+      { label: 'Begleitung bei Krebs', href: '/behandlung/begleitende-behandlung' },
       { label: 'Rücken & Wirbelsäule', href: '/behandlung/ruecken' },
       { label: 'Kinder', href: '/behandlung/kinder' },
       { label: 'Psychische Leiden', href: '/behandlung/psyche' },
-      { label: 'Begleitende Behandlung', href: '/behandlung/begleitende-behandlung' },
     ],
   },
   {
     title: 'Methoden',
     links: [
       { label: 'Geistiges Heilen', href: '/methoden/geistheilung' },
-      { label: 'Clearing', href: '/methoden/clearing' },
-      { label: 'Hypnose', href: '/methoden/hypnose' },
-      { label: 'Meditation', href: '/methoden/meditation' },
       { label: 'Energiemassagen', href: '/methoden/massage' },
-      { label: 'Qi Gong', href: '/methoden/qi-gong' },
+      { label: 'Qi Gong & Atemarbeit', href: '/methoden/qi-gong' },
+      { label: 'Raum- & Gebäudeclearing', href: '/methoden/clearing' },
     ],
   },
   {
@@ -131,7 +128,6 @@ export const footerNav = [
     links: [
       { label: 'Über mich', href: '/ueber-mich' },
       { label: 'Erfahrungsberichte', href: '/erfahrungsberichte' },
-      { label: 'Ausbildung & Karriere', href: '/ausbildung-karriere' },
       { label: 'Kosten', href: '/kosten' },
       { label: 'Kontakt', href: '/kontakt' },
     ],

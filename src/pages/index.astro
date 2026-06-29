@@ -13,62 +13,59 @@ import Social from '../components/Social.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, disclaimer, videos } from '../data/site';
 import { methods } from '../data/methods';
-import { treatments } from '../data/treatments';
-import { werte, ausbildungen } from '../data/jobs';
-const podcast = videos.find((v) => v.kind === 'Podcast');
+import { treatments, wochenprogramm } from '../data/treatments';
+const weitere = treatments.filter((t) => t.slug !== 'begleitende-behandlung');
 ---
 <Layout floating={true} current="/">
   <!-- LCP-Hero vorab laden (passend zum <picture> je Viewport) -->
-  <link slot="head" rel="preload" as="image" type="image/webp" href="/images/hero-lake-900.webp" media="(max-width: 700px)" />
-  <link slot="head" rel="preload" as="image" type="image/webp" href="/images/hero-lake.webp" media="(min-width: 701px)" />
+  <link slot="head" rel="preload" as="image" type="image/webp" href="/images/hope-hero-900.webp" media="(max-width: 700px)" />
+  <link slot="head" rel="preload" as="image" type="image/webp" href="/images/hope-hero.webp" media="(min-width: 701px)" />
 
   <!-- ───────────────────────── Hero ───────────────────────── -->
   <section class="relative isolate flex min-h-[92svh] items-end overflow-hidden">
     <div class="absolute inset-0 -z-10">
       <picture>
-        <source type="image/webp" media="(max-width: 700px)" srcset="/images/hero-lake-900.webp" />
-        <source type="image/webp" srcset="/images/hero-lake.webp" />
-        <img src="/images/hero-lake.jpg" alt="" aria-hidden="true" width="1600" height="1100"
-          fetchpriority="high" decoding="async" class="h-full w-full object-cover object-center" />
+        <source type="image/webp" media="(max-width: 700px)" srcset="/images/hope-hero-900.webp" />
+        <source type="image/webp" srcset="/images/hope-hero.webp" />
+        <img src="/images/hope-hero.jpg" alt="" aria-hidden="true" width="1600" height="1100"
+          fetchpriority="high" decoding="async" class="h-full w-full object-cover object-[50%_60%]" />
       </picture>
-      <div class="absolute inset-0" style="background:linear-gradient(178deg, rgb(22 15 12 / 0.46) 0%, rgb(22 15 12 / 0.18) 34%, rgb(22 15 12 / 0.40) 64%, rgb(22 15 12 / 0.82) 100%)"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(96deg, rgb(26 12 5 / 0.66) 0%, rgb(26 12 5 / 0.36) 40%, rgb(26 12 5 / 0.06) 66%, rgb(26 12 5 / 0) 100%), linear-gradient(0deg, rgb(24 12 6 / 0.62) 0%, rgb(24 12 6 / 0) 48%)"></div>
     </div>
 
     <div class="container-x relative w-full pb-16 pt-32 sm:pb-20 lg:pb-24">
       <div class="max-w-2xl">
         <LiveStatus variant="dark" class="mb-6" />
-        <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
-          <Icon name="Sun" size={16} class="text-amber" />{site.kicker}
+        <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-white/85">
+          <Icon name="Sun" size={16} class="text-amber" />Begleitung bei Krebs &amp; schweren Erkrankungen
         </p>
-        <h1 class="mt-4 text-balance font-display text-[2.7rem] font-medium leading-[1.05] text-white sm:text-6xl lg:text-[4.1rem]"
+        <h1 class="mt-4 text-balance font-display text-[2.6rem] font-medium leading-[1.06] text-white sm:text-6xl lg:text-[4rem]"
           style="text-shadow:0 2px 30px rgba(0,0,0,0.4)">
-          Heilung beginnt an der Wurzel.
+          An Ihrer Seite - mit Kraft, Ruhe und Wärme.
         </h1>
         <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/90 text-pretty sm:text-xl" style="text-shadow:0 1px 12px rgba(0,0,0,0.45)">
-          Geistiges Heilen und alternative Heilmethoden in {site.place}.
-          Ich begleite Sie ein Stück Ihres Weges - mit Ruhe, Erfahrung und Respekt, seit {site.since}.
+          Eine Diagnose verändert alles. Ich begleite Sie eine Woche lang in meiner Praxis am Stechlinsee -
+          mit drei Behandlungen, die Kraft geben. Ergänzend zu Ihrer ärztlichen Therapie, seit {site.since}.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a href={site.phone.href} class="btn btn-amber inline-flex items-center justify-center gap-2 text-base">
             <Icon name="Phone" size={18} />Termin anfragen
           </a>
-          <a href="/ueber-mich" class="btn btn-on-dark inline-flex items-center justify-center gap-2 text-base">
-            Meine Arbeit kennenlernen<Icon name="ArrowRight" size={18} />
+          <a href="#die-woche" class="btn btn-on-dark inline-flex items-center justify-center gap-2 text-base">
+            Die Woche kennenlernen<Icon name="ArrowRight" size={18} />
           </a>
         </div>
-
       </div>
 
-      <!-- Gestapelte Glas-Bewertungen rechts im Hero (ab xl): die vorderste klar,
-           dahinter zunehmend durchsichtiger und versetzt - fügt sich ins Headerbild ein. -->
+      <!-- Gestapelte Glas-Bewertungen rechts im Hero (ab xl) -->
       <div class="absolute right-0 top-1/2 z-10 hidden w-[19.5rem] -translate-y-1/2 xl:block">
         <figure class="absolute inset-x-0 top-0 -translate-y-[4.75rem] translate-x-8 rotate-[5deg] rounded-3xl border border-white/10 bg-white/[0.05] p-5 opacity-50 shadow-lift backdrop-blur-md">
           <blockquote class="text-sm leading-snug text-white/85">„Heute geht es mir sehr gut - wir haben neue Energie gewonnen."</blockquote>
           <figcaption class="mt-1.5 text-xs text-white/55">H. Maybaum</figcaption>
         </figure>
         <figure class="absolute inset-x-0 top-0 -translate-y-9 translate-x-4 rotate-[2.5deg] rounded-3xl border border-white/15 bg-white/[0.08] p-5 opacity-80 shadow-lift backdrop-blur-lg">
-          <blockquote class="text-sm leading-snug text-white/90">„Ich kann wieder aufrecht durchs Leben gehen, ohne Schmerzen."</blockquote>
-          <figcaption class="mt-1.5 text-xs text-white/60">U. Kohlscheen · Oldenburg</figcaption>
+          <blockquote class="text-sm leading-snug text-white/90">„Das Gesamtpaket hat mir Gesundheit und Vitalität zurückgebracht."</blockquote>
+          <figcaption class="mt-1.5 text-xs text-white/60">E. Lehnst</figcaption>
         </figure>
         <figure class="relative rounded-3xl border border-white/25 bg-white/[0.14] p-6 shadow-lift backdrop-blur-xl">
           <div class="flex items-center gap-2.5">
@@ -96,7 +93,7 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
       <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div class="reveal relative order-2 lg:order-1">
           <div class="relative overflow-hidden rounded-3xl shadow-lift lg:min-h-[30rem]">
-            <img src="/images/path-forest.jpg" alt="Ein ruhiger Weg durch lichten Wald"
+            <img src="/images/hands-hold.jpg" alt="Zwei Hände, die einander halten, im warmen Licht"
               width="1000" height="750" loading="lazy" decoding="async"
               class="h-full w-full object-cover lg:absolute lg:inset-0" />
           </div>
@@ -109,21 +106,21 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
         <div class="order-1 lg:order-2">
           <span class="eyebrow mb-4">Über mich</span>
           <h2 class="text-balance text-3xl text-ink sm:text-4xl lg:text-[2.6rem]">
-            Ich darf als Bindeglied wirken - zwischen Schöpfung und Heilung Suchenden.
+            Niemand sollte diesen Weg allein gehen.
           </h2>
           <div class="mt-5 space-y-4 leading-relaxed text-ink-soft">
             <p>
               Als Heiler lasse ich universelle Heilkräfte in Körper und Geist fließen - geistig und durch
-              Handauflegen. Öffnet sich ein Mensch, lässt zu und nimmt vertrauensvoll an, geschieht die Heilung.
+              Handauflegen. Mir geht es darum, Kraft zu geben, zu beruhigen und die Selbstheilungskräfte zu stärken.
             </p>
             <p>
-              Mir ist wichtig, an die Wurzeln zu gehen. Nur die Symptome zu behandeln genügt bei weitem nicht -
-              deshalb beginnt jede Begleitung mit einem sehr ausführlichen Gespräch.
+              Gerade Menschen mit einer schweren Diagnose begleite ich mit ganzem Herzen - mit Zeit, Wärme und Ruhe,
+              ergänzend zu ihrer ärztlichen Behandlung.
             </p>
           </div>
           <p class="mt-6 flex items-start gap-3 rounded-2xl border border-line bg-sand px-5 py-4 text-[0.95rem] leading-relaxed text-ink-soft">
             <Icon name="ShieldCheck" size={20} class="mt-0.5 shrink-0 text-clay-deep" />
-            <span><strong class="font-semibold text-ink">{disclaimer.noPromise}</strong> Meine Methoden aktivieren die Selbstheilungskräfte und ersetzen nicht die Tätigkeit eines Arztes.</span>
+            <span><strong class="font-semibold text-ink">{disclaimer.noPromise}</strong> Meine Methoden stärken die Selbstheilungskräfte und ersetzen nicht die Tätigkeit eines Arztes.</span>
           </p>
           <a href="/ueber-mich" class="mt-7 inline-flex items-center gap-1.5 font-semibold text-clay-deep hover:text-clay-ink">
             Mehr über meinen Weg<Icon name="ArrowRight" size={17} />
@@ -133,16 +130,63 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
     </div>
   </section>
 
+  <!-- ─────────────────── Die Woche bei mir (Signatur) ─────────────────── -->
+  <section id="die-woche" class="scroll-mt-24 bg-sand">
+    <div class="container-x py-20 lg:py-28">
+      <div class="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16">
+        <div>
+          <SectionHeading
+            eyebrow={wochenprogramm.kicker}
+            title={wochenprogramm.title}
+            lead={wochenprogramm.intro}
+            class="reveal"
+          />
+          <ol class="mt-9 space-y-5">
+            {wochenprogramm.steps.map((s) => (
+              <li class="reveal flex gap-4">
+                <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-clay-deep font-display text-lg text-white">{s.n}</span>
+                <div>
+                  <h3 class="font-display text-lg text-ink">{s.title}</h3>
+                  <p class="mt-1 text-[0.95rem] leading-relaxed text-ink-soft">{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="reveal">
+          <div class="overflow-hidden rounded-3xl shadow-lift">
+            <img src="/images/warm-room.jpg" alt="Ein warmer, sonnendurchfluteter Raum zum Ankommen"
+              width="1000" height="750" loading="lazy" decoding="async" class="h-60 w-full object-cover sm:h-72" />
+          </div>
+          <div class="mt-5 rounded-3xl border border-line bg-white p-7 shadow-soft">
+            <p class="text-sm font-semibold uppercase tracking-wide text-clay-ink">{wochenprogramm.priceLabel}</p>
+            <p class="mt-1 font-display text-4xl text-ink">{wochenprogramm.price}</p>
+            <p class="mt-3 text-sm leading-relaxed text-ink-soft">{wochenprogramm.priceNote}</p>
+            <div class="mt-6 flex flex-col gap-2.5 sm:flex-row">
+              <a href={site.phone.href} class="btn btn-primary inline-flex items-center justify-center gap-2">
+                <Icon name="Phone" size={16} />Termin anfragen
+              </a>
+              <a href="/behandlung/begleitende-behandlung" class="btn btn-outline inline-flex items-center justify-center gap-2">
+                Mehr zur Begleitung<Icon name="ArrowRight" size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────────────────────── Methoden ───────────────────────── -->
-  <section class="bg-sand">
+  <section class="bg-paper">
     <div class="container-x py-20 lg:py-28">
       <SectionHeading
         eyebrow="Methoden"
-        title="Sechs Wege, die in meiner Arbeit zusammenfinden."
-        lead="Jede Begleitung ist anders. Ich wähle aus diesen Methoden das, was zu Ihnen und Ihrem Anliegen passt."
+        title="Womit ich Sie begleite."
+        lead="Es geht um den Menschen - um Kraft, Ruhe und die Stärkung der Selbstheilung."
         class="reveal max-w-2xl"
       />
-      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {methods.map((m) => (
           <ServiceCard href={`/methoden/${m.slug}`} icon={m.icon} title={m.name} blurb={m.short} image={m.image} cta="Mehr erfahren" />
         ))}
@@ -150,24 +194,24 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
     </div>
   </section>
 
-  <!-- ───────────────── Behandlungsschwerpunkte ───────────────── -->
-  <section class="bg-paper">
+  <!-- ───────────────── weitere Begleitung ───────────────── -->
+  <section class="bg-mist">
     <div class="container-x py-20 lg:py-28">
       <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-16">
         <SectionHeading
-          eyebrow="Behandlung"
-          title="Wobei ich Sie begleite."
-          lead="Selbstbewusst beschreibend, nie ein Versprechen: Ich unterstütze, lindere und begleite - bei einem breiten Spektrum an Themen."
+          eyebrow="Weitere Begleitung"
+          title="Ich begleite auch bei …"
+          lead="Neben der Begleitung bei Krebs unterstütze ich bei einem breiteren Spektrum - selbstbewusst beschreibend, immer als Begleitung."
           class="reveal"
         />
         <p class="reveal text-[0.95rem] leading-relaxed text-muted lg:pb-2">
-          Bei schweren Erkrankungen verstehe ich meine Arbeit ausdrücklich als Begleitung,
-          ergänzend zu Ihrer ärztlichen Behandlung - nie an ihrer Stelle.
+          Auch hier gilt: Ich unterstütze, lindere und begleite - ergänzend zu Ihrer ärztlichen Behandlung,
+          nie an ihrer Stelle.
         </p>
       </div>
 
-      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {treatments.map((t) => (
+      <div class="mt-12 grid gap-5 sm:grid-cols-3">
+        {weitere.map((t) => (
           <a href={`/behandlung/${t.slug}`} class="card card-hover group reveal flex flex-col p-7">
             <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-clay-tint text-clay-deep transition-colors group-hover:bg-clay-deep group-hover:text-white">
               <Icon name={t.icon} size={23} strokeWidth={1.8} />
@@ -184,100 +228,43 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
   </section>
 
   <!-- ───────────────────────── Philosophie ───────────────────────── -->
-  <section class="bg-mist">
+  <section class="bg-paper">
     <div class="container-x py-20 lg:py-28">
       <div class="mx-auto max-w-3xl text-center">
-        <Icon name="Sprout" size={32} class="mx-auto text-sage-ink" strokeWidth={1.6} />
+        <Icon name="Sun" size={32} class="mx-auto text-amber-deep" strokeWidth={1.6} />
         <blockquote class="reveal mt-6 text-balance font-display text-2xl leading-snug text-ink sm:text-3xl lg:text-[2.4rem] lg:leading-[1.2]">
-          „Krankheiten sind Disharmonien in unserem Körper, die natürlich alle ihre Ursachen haben.
-          Um sie zu bearbeiten, ist es notwendig, an die Wurzeln zu gehen."
+          „Die Kräfte der Selbstheilung sind größer, als die meisten Menschen glauben."
         </blockquote>
         <p class="reveal mx-auto mt-6 max-w-xl leading-relaxed text-ink-soft text-pretty">
-          Nur die Symptome zu behandeln genügt bei weitem nicht. Die Auflösung der Ursachen bildet
-          die Grundlage und die Basis meiner Behandlungen.
+          Ich gehe an die Wurzeln - und gebe Ihnen Kraft, Ruhe und Zuversicht für Ihren Weg.
         </p>
       </div>
     </div>
   </section>
 
   <!-- ─────────────── Einblicke: Videos & Podcast ─────────────── -->
-  <section class="bg-paper">
+  <section class="bg-sand">
     <div class="container-x py-20 lg:py-28">
       <SectionHeading
         eyebrow="Einblicke"
         title="Sehen, hören, ein Gefühl bekommen."
-        lead="Lernen Sie meine Arbeit in Ruhe kennen - im Praxis-Video, in zwei Filmen und einem ausführlichen Podcast-Gespräch."
+        lead="Lernen Sie meine Arbeit in Ruhe kennen - in zwei Videos und einem ausführlichen Podcast-Gespräch."
         class="reveal max-w-2xl"
       />
-      <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {videos.map((v) => (
           <div class="reveal"><VideoEmbed id={v.id} title={v.title} /></div>
         ))}
       </div>
       <p class="reveal mt-6 text-sm text-muted">
         Videos &amp; Podcast laden erst nach Klick (YouTube, datenschutzfreundlich). Der Podcast erscheint bei
-        <a href={`https://www.youtube.com/watch?v=${podcast?.id}`} target="_blank" rel="noopener noreferrer" class="font-semibold text-clay-deep hover:text-clay-ink">„Gesundheit für Empathen"</a>.
+        <a href={`https://www.youtube.com/watch?v=${videos[2].id}`} target="_blank" rel="noopener noreferrer" class="font-semibold text-clay-deep hover:text-clay-ink">„Gesundheit für Empathen"</a>.
       </p>
     </div>
   </section>
 
-  <!-- ─────────────── Google-Bewertungen (Glaseffekt) ─────────────── -->
-  <GoogleReviews />
-
-  <!-- ─────────────── Ausbildung & Karriere (Employer Branding) ─────────────── -->
-  <section class="relative isolate overflow-hidden bg-sage-tint">
-    <div class="container-x py-20 lg:py-28">
-      <div class="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
-        <div>
-          <SectionHeading
-            eyebrow="Ausbildung & Karriere"
-            title="Bei uns lernen, heilen, wachsen."
-            lead="Diese Praxis bildet aus - in Geistheilung, Reiki und Meditation. Wenn Sie spüren, dass dieser Weg zu Ihnen gehört, lade ich Sie ein, ihn an meiner Seite zu gehen."
-            class="reveal"
-          />
-          <div class="mt-8 grid gap-5 sm:grid-cols-2">
-            {werte.map((w) => (
-              <div class="reveal flex gap-4">
-                <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-sage-ink shadow-soft">
-                  <Icon name={w.icon} size={21} strokeWidth={1.8} />
-                </span>
-                <div>
-                  <h3 class="font-display text-lg text-ink">{w.title}</h3>
-                  <p class="mt-1 text-[0.92rem] leading-relaxed text-ink-soft">{w.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="reveal">
-          <div class="overflow-hidden rounded-3xl shadow-lift">
-            <img src="/images/forest-light.jpg" alt="Warmes Licht in einem ruhigen Wald am Stechlinsee"
-              width="1000" height="750" loading="lazy" decoding="async" class="h-56 w-full object-cover sm:h-72" />
-          </div>
-          <div class="mt-5 rounded-3xl border border-line bg-white p-7 shadow-soft">
-            <h3 class="flex items-center gap-2.5 font-display text-xl text-ink">
-              <Icon name="GraduationCap" size={22} class="text-clay-deep" />Das bilden wir aus
-            </h3>
-            <ul class="mt-5 grid gap-3 sm:grid-cols-2">
-              {ausbildungen.map((a) => (
-                <li class="flex items-start gap-3">
-                  <Icon name="Check" size={18} class="mt-0.5 shrink-0 text-clay-deep" strokeWidth={2.4} />
-                  <span>
-                    <span class="block font-semibold text-ink">{a.name}</span>
-                    <span class="block text-sm text-muted">{a.detail}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <a href="/ausbildung-karriere" class="btn btn-primary mt-7 inline-flex w-full items-center justify-center gap-2 sm:w-auto">
-              Ausbildung & Stellen ansehen<Icon name="ArrowRight" size={17} />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ───────────────────────── Google-Bewertungen (Glaseffekt) ───────────────────────── -->
+  <GoogleReviews image="/images/golden-water.jpg" />
 
   <!-- ───────────────────────── Kosten-Teaser ───────────────────────── -->
   <section class="bg-paper">
@@ -290,8 +277,8 @@ const podcast = videos.find((v) => v.kind === 'Podcast');
           <div>
             <h2 class="font-display text-2xl text-ink">Transparente Kosten, ehrlich genannt.</h2>
             <p class="mt-2 max-w-xl leading-relaxed text-ink-soft">
-              Jede Begleitung ist individuell. Die Honorare für einzelne Behandlungen und Behandlungskomplexe
-              finden Sie offen aufgelistet - ohne Kleingedrucktes.
+              Die Woche bei mir kostet zwischen <strong class="text-ink">1.800 und 3.000 €</strong> - je nach
+              individuellem Behandlungskomplex. Alle weiteren Honorare finden Sie offen aufgelistet.
             </p>
           </div>
         </div>

@@ -1,15 +1,17 @@
 # Gesundheitspraxis SonnenTor — Website (2026 Redesign)
 
-Ruhige, warme, vertrauensvolle Website für die **Gesundheitspraxis SonnenTor** -
+Warme, lebensbejahende, vertrauensvolle Website für die **Gesundheitspraxis SonnenTor** -
 Praxis für Alternative Heilmethoden in **Neuglobsow am Stechlinsee** (Brandenburg).
-Geistiges Heilen, Clearing, Hypnose, Meditation, Energiemassagen und Qi Gong, dazu
-begleitende Behandlung bei Rücken-, Kinder- und psychischen Themen. Inhaber & Heiler:
-Dr. Fabian Siegfried Forbrig, seit 2007.
+**Fokus: begleitende Behandlung bei Krebs und schweren Erkrankungen** - Patienten
+bleiben eine Woche in der Praxis und erhalten drei Behandlungen (1.800-3.000 €).
+Methoden: geistiges Heilen, Energiemassagen, Qi Gong & Atemarbeit, Clearing; daneben
+Rücken, Kinder und psychische Leiden. Inhaber & Heiler: Dr. Fabian Siegfried Forbrig,
+seit 2007.
 
 Ersetzt die alte TYPO3-Seite (gesundheitspraxis-sonnentor.de). Die alte Seite war
 **Content-Quelle**, nicht Stil-Vorlage - Design, Code und Struktur sind komplett neu.
-Zwei gleichwertige Ziele: Patienten gewinnen **und** Personal/Ausbildung
-(Employer Branding).
+Meditation, Hypnose und Weiterbildung/Ausbildung werden nicht mehr angeboten und sind
+entfernt.
 
 ## Tech-Stack
 
